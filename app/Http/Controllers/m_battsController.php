@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 class m_battsController extends Controller
 {
    public function batt_show(){
-        $data_batt = M_batts::all();
+        $data_batt = M_batts::paginate(15);
         // dd($data_batt);
         return view('tabel_batt',["title" => "Posts", "data_batt" => $data_batt]);
     }

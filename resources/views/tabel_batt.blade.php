@@ -31,7 +31,7 @@
 
                     <tr>
                         <td>
-                            {{ $index +1 }}
+                            {{ $data_batt->firstItem()+$index }}
                         </td>
                         <td>
                             {{ $item->cell_sern }}
@@ -60,6 +60,8 @@
                 </tbody>
 
             </table>
+
+            {{ $data_batt->links() }}
 
         </div>
 
