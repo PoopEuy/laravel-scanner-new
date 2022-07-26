@@ -41,13 +41,13 @@ Route::get('/about', function () {
 });
 
 
-Route::get('/batt_show', [m_battsController::class, 'batt_show']);
+
 
 Route::get('/posts', [PostController::class, 'index']);
 
 //halaman single post
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
-
+Route::get('/batt_show', [m_battsController::class, 'batt_show']);
 Route::get('scan/{cell_sern_scan}/{v_gr_scan}/{ir_gr_scan}', [m_battsController::class, 'scan_now']);
 // Route::get('/scan', function () {
 //     return view('scan' ,
@@ -59,6 +59,5 @@ Route::get('scan/{cell_sern_scan}/{v_gr_scan}/{ir_gr_scan}', [m_battsController:
 // });
 
 Route::put('/update_data/{cell_sern_scan}', [m_battsController::class, 'update']);
-// Route::put('/update_data/{cell_sern_scan}', function () {
-//    echo 'tEEST';
-// });
+Route::get('/m_battsexport', [m_battsController::class, 'm_battsexport']);
+Route::post('/m_battimportexcel', [m_battsController::class, 'm_battimportexcel']);

@@ -11,6 +11,6 @@ class m_batts extends Model
     protected $table = "m_batts";
     protected $orimaryKey = "cell_sern";
     protected $fillable = [
-       'cell_sern', 'capa_grad', 'crtn_sern', 'm', 'c_po', 'v_po', 'ir_pc', 'k', 'w', 'ha', 'hc', 't', 'bin', 'v_gr', 'ir_gr', 'frame_sn', 'cell', 'd_test'
+       'cell_sern', 'capa_grad', 'crtn_sern', 'm', 'c_po', 'v_po', 'ir_po', 'k', 'w', 'ha', 'hc', 't', 'bin', 'v_gr', 'ir_gr', 'frame_sn', 'cell', 'd_test'
     ];
 }

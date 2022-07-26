@@ -21,13 +21,13 @@ class CreateMBattsTable extends Migration
             $table->float('m', 10, 4);
             $table->float('c_po', 10, 5);
             $table->float('v_po', 10, 8);
-            $table->float('ir_po', 10, 5);
+            $table->float('ir_po', 10, 8);
             $table->float('k', 10, 7);
             $table->float('w', 10, 4);
             $table->float('ha', 10, 4);
             $table->float('hc', 10, 4);
             $table->float('t', 10, 4);
-            $table->integer('bin');
+            $table->integer('bin')->nullable();
             $table->float('v_gr', 10, 8)->nullable();
             $table->float('ir_gr', 10, 5)->nullable();
             $table->string('frame_sn', 50)->nullable();
