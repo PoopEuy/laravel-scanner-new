@@ -7,7 +7,7 @@ use App\Models\M_batts;
 
 class m_battsController extends Controller
 {
-   public function show_batt(){
+   public function batt_show(){
         $data_batt = M_batts::all();
         dd($data_batt);
         // return view('tabel_batt',["title" => "Posts", "batt" => M_batts::all()]);

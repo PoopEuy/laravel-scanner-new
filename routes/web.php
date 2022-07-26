@@ -41,7 +41,7 @@ Route::get('/about', function () {
 });
 
 
-Route::get('/batt_show', [m_battsController::class, 'show_batt']);
+Route::get('/batt_show', [m_battsController::class, 'batt_show']);
 
 Route::get('/posts', [PostController::class, 'index']);
 
