@@ -21,15 +21,22 @@ class m_battsController extends Controller
         // $tes_data = M_batt::all();
         // $scan_data = M_batt::where('cell_sern', $cell_sern_scan)->get();
         // echo $scan_data;
+        $scan = M_batts::where('cell_sern', $cell_sern_scan)->first();
 
-        return view('scan',
-    [
-        "title" => "Scan",
-        "cell_sern_scan" => $cell_sern_scan,
-        "v_gr_scan" => $v_gr_scan,
-        "ir_gr_scan" => $ir_gr_scan,
-        "scan" => M_batts::where('cell_sern', $cell_sern_scan)->first()
-    ]);
+        if (!empty($scan)) {
+            return view('scan',
+            [
+                "title" => "Scan",
+                "cell_sern_scan" => $cell_sern_scan,
+                "v_gr_scan" => $v_gr_scan,
+                "ir_gr_scan" => $ir_gr_scan,
+                "scan" => $scan
+            ]);
+        }else{
+
+            return view('/empty_qrcode',["title" => "EmptyQRCode"]);
+        }
+
     }
 
     public function update(Request $request,$cell_sern_scan){
