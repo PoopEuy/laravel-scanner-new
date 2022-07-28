@@ -61,7 +61,14 @@ Route::get('scan/{cell_sern_scan}/{v_gr_scan}/{ir_gr_scan}', [M_battController::
 Route::get('/m_battsexport', [M_battController::class, 'm_battsexport']);
 Route::put('/update_data/{cell_sern_scan}', [M_battController::class, 'update']);
 Route::post('/m_battimportexcel', [M_battController::class, 'm_battimportexcel']);
+Route::get('/findQr', function () {
+    return view('findQr',["title" => "findQr"]);
+});
 
+Route::post('/findQrCode', [M_battController::class, 'findQrCode']);
+// Route::post('/findQrCode', function () {
+//     echo 'FIND';
+// });
 Route::get('/input_test', function () {
     return view('input_test',["title" => "InputTest"]);
 });

@@ -39,6 +39,24 @@ class M_battController extends Controller
 
     }
 
+    public function findQrCode(Request $request){
+
+        $scan_qr = $request->input('scan_qr');
+        // echo $scan_qr;
+        $scan = M_batt::where('cell_sern', $scan_qr)->first();
+        if (!empty($scan)) {
+            return view('dataBin',
+            [
+                "title" => "Scan",
+                "scan" => $scan
+            ]);
+        }else{
+
+            return view('/empty_qrcode',["title" => "EmptyQRCode"]);
+        }
+
+    }
+
     public function update(Request $request,$cell_sern_scan){
         $batt_data = M_batt::where('cell_sern', $cell_sern_scan)->first();
         $batt_data->v_gr = $request->input('v_gr_scan');
