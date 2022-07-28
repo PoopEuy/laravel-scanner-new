@@ -9,7 +9,7 @@ class M_batt extends Model
 {
     use HasFactory;
     protected $table = "m_batts";
-    protected $primaryKey = "cell_sern";
+    protected $primaryKey = "id";
     protected $fillable = [
        'cell_sern', 'capa_grad', 'crtn_sern', 'm', 'c_po', 'v_po', 'ir_po', 'k', 'w', 'ha', 'hc', 't', 'bin', 'v_gr', 'ir_gr', 'frame_sn', 'cell', 'd_test'
     ];
