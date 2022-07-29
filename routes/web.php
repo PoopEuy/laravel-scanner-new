@@ -58,12 +58,15 @@ Route::get('/batt_show', [M_battController::class, 'batt_show']);
 //mbatt Route
 Route::get('scan/{cell_sern_scan}/{v_gr_scan}/{ir_gr_scan}', [M_battController::class, 'scan_now']);
 
-Route::get('/m_battsexport', [M_battController::class, 'm_battsexport']);
+Route::get('/m_battsexport', [M_battController::class, 'm_battexport']);
 Route::put('/update_data/{cell_sern_scan}', [M_battController::class, 'update']);
 Route::post('/m_battimportexcel', [M_battController::class, 'm_battimportexcel']);
 Route::get('/findQr', function () {
-    return view('findQr',["title" => "findQr"]);
+    return view('findQr',["title" => "Find BINQR"]);
 });
+
+Route::get('/scanIrVolt/{v_gr_scan}/{ir_gr_scan}', [M_battController::class, 'scanIrVolt']);
+Route::post('/vendorVoltIr', [M_battController::class, 'vendorVoltIr']);
 
 Route::post('/findQrCode', [M_battController::class, 'findQrCode']);
 // Route::post('/findQrCode', function () {

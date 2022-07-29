@@ -21,4 +21,9 @@
             </form>
         </div>
     </div>
+    <script>
+        window.onload = function() {
+            document.getElementById("scan_qr").focus();
+        };
+    </script>
 @endsection

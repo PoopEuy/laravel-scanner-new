@@ -17,9 +17,9 @@
                     </li>
                     <a class="nav-link {{($title === "Scan" ? 'active' : '')}}" href="/scan">Scan</a>
                     </li> --}}
-                <a class="nav-link {{ $title === 'Upload' ? 'active' : '' }}" href="/batt_show">Upload</a>
+                <a class="nav-link {{ $title === 'DataBatt' ? 'active' : '' }}" href="/batt_show">DataBatt</a>
                 </li>
-                <a class="nav-link {{ $title === 'dataBin' ? 'active' : '' }}" href="/findQr">findQR</a>
+                <a class="nav-link {{ $title === 'Find BINQR' ? 'active' : '' }}" href="/findQr">Find BINQR</a>
                 </li>
 
             </ul>
