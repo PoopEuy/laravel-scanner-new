@@ -37,7 +37,6 @@ class M_battController extends Controller
     }
 
     public function findQrCode(Request $request){
-
         $scan_qr = $request->input('scan_qr');
         // echo $scan_qr;
         $scan = M_batt::where('cell_sern', $scan_qr)->first();
@@ -98,6 +97,25 @@ class M_battController extends Controller
         $batt_data->update();
         return redirect('scan/'.$cell_sern_scan.'/'.$data_input_v_gr.'/'.$data_input_ir_gr)->with('success', 'Data Updated Succesfully');
         // echo $cell_sern_scan;
+    }
+
+    public function searchBinPage(){
+        return view('searchBinPage',
+            [
+                "title" => "Find BINQR"
+
+
+            ]);
+
+    }
+
+    public function searchBinData(Request $request, $cell_sern_scan){
+
+        $bin_data = M_batt::where('cell_sern', $cell_sern_scan)->first();
+        return view('searchBinData')->with([
+            'data'=>$bin_data
+        ]);
+
     }
 
     public function m_battexport(){

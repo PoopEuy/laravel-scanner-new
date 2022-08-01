@@ -64,11 +64,11 @@ Route::post('/m_battimportexcel', [M_battController::class, 'm_battimportexcel']
 Route::get('/findQr', function () {
     return view('findQr',["title" => "Find BINQR"]);
 });
-
 Route::get('/scanIrVolt/{v_gr_scan}/{ir_gr_scan}', [M_battController::class, 'scanIrVolt']);
 Route::post('/vendorVoltIr', [M_battController::class, 'vendorVoltIr']);
-
 Route::post('/findQrCode', [M_battController::class, 'findQrCode']);
+Route::get('/searchBinPage', [M_battController::class, 'searchBinPage']);
+Route::get('/searchBinData/{cell_sern_scan}', [M_battController::class, 'searchBinData']);
 // Route::post('/findQrCode', function () {
 //     echo 'FIND';
 // });

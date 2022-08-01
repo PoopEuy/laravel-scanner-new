@@ -19,7 +19,7 @@
                     </li> --}}
                 <a class="nav-link {{ $title === 'DataBatt' ? 'active' : '' }}" href="/batt_show">DataBatt</a>
                 </li>
-                <a class="nav-link {{ $title === 'Find BINQR' ? 'active' : '' }}" href="/findQr">Find BINQR</a>
+                <a class="nav-link {{ $title === 'Find BINQR' ? 'active' : '' }}" href="/searchBinPage">Find BINQR</a>
                 </li>
 
             </ul>
