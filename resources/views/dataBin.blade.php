@@ -4,7 +4,7 @@
     {{-- {{ $scan }} --}}
     {{-- @dd($scan) --}}
     @php
-    header('Refresh:2; url=/findQr');
+    header('Refresh:1; url=/findQr');
     @endphp
     <div class="row">
         <div class="form-group col-md-6">
@@ -18,7 +18,7 @@
                         <input type="text" class="form-control" id="cell_sern_scan" name="cell_sern_scan"
                             placeholder="Scan Cell Series Number" value="{{ $scan->cell_sern }}" readonly>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="inputPassword4">OCVB (V)</label>
                         <input type="text" class="form-control" id="v_gr_scan" name="v_gr_scan" placeholder="OCVB"
                             value="{{ $scan->v_gr }}" readonly>
@@ -27,7 +27,7 @@
                         <label for="inputPassword4">IMPB</label>
                         <input type="text" class="form-control" id="v_gr_scan" name="ir_gr_scan" placeholder="IMPB"
                             value="{{ $scan->ir_gr }}" readonly>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <br>
@@ -44,7 +44,7 @@
 
         <div class="form-group col-md-6">
             <div class="form-row">
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="inputEmail4">Vendor Cell Series Number</label>
                     <input type="text" class="form-control" id="db_cell_sern" placeholder="Vendor Cell Series Numbe"
                         value="{{ $scan->cell_sern }}" readonly>
@@ -63,11 +63,14 @@
                     <label for="inputPassword4">Vendor Carton Series Number </label>
                     <input type="text" class="form-control" id="db_crtn_sern" placeholder="Vendor Carton Series Number"
                         value="{{ $scan->crtn_sern }}" readonly>
-                </div>
+                </div> --}}
                 <div class="form-group">
-                    <label for="inputPassword4">Vendor BIN</label>
-                    <input type="text" class="form-control" id="db_bin" placeholder="Vendor BIN"
-                        value="{{ $scan->bin }}" readonly>
+                    {{-- <label for="inputPassword4">Vendor BIN</label> --}}
+                    {{-- <input type="text" class="form-control" id="db_bin" placeholder="Vendor BIN"
+                        value="{{ $scan->bin }}" readonly> --}}
+                    <h1 class="display-1" style="text-align: center;">Vendor BIN</h1>
+                    <h2 class="display-1" style="text-align: center; font-size:20rem;"><strong>{{ $scan->bin }}</strong>
+                        </h1>
                 </div>
             </div>
             <br>
