@@ -61,8 +61,8 @@
                 </div>
                 <div class="form-group">
                     <label for="inputPassword4">Check At</label>
-                    <input type="text" class="form-control" id="updated_at" placeholder="Check At "
-                        value="{{ $voltage->updated_at }}" readonly>
+                    <input type="text" class="form-control" id="d_test" placeholder="Check At "
+                        value="{{ $voltage->d_test }}" readonly>
                 </div>
             </div>
             <br>
@@ -77,7 +77,7 @@
 
     <script>
         var cookies_last;
-        var dataUpdate = document.getElementById("updated_at").value;
+        var dataUpdate = document.getElementById("d_test").value;
         var dataView1 = document.getElementById("dataMuncul1");
         var dataView2 = document.getElementById("dataMuncul2");
         getCookie()
