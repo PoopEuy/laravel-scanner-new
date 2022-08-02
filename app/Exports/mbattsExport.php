@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\m_batt;
+use App\Models\M_batt;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class mbattsExport implements FromCollection
@@ -12,6 +12,6 @@ class mbattsExport implements FromCollection
     */
     public function collection()
     {
-        return m_batt::all();
+        return M_batt::all();
     }
 }

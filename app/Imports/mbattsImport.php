@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\m_batt;
+use App\Models\M_batt;
 use Maatwebsite\Excel\Concerns\ToModel;
 
 class mbattsImport implements ToModel
@@ -23,7 +23,7 @@ class mbattsImport implements ToModel
         $bin = 3;
         }
 
-        return new m_batt([
+        return new M_batt([
            'capa_grad' => $row[0],
             'cell_sern' => $row[1],
             'crtn_sern' => $row[2],
