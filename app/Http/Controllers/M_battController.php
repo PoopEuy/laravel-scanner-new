@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 class M_battController extends Controller
 {
    public function batt_show(){
-        $data_batt = M_batt::paginate(15);
+        $data_batt = M_batt::orderBy('updated_at', 'DESC')->paginate(15);
         // dd($data_batt);
         return view('tabel_batt',["title" => "DataBatt", "data_batt" => $data_batt]);
     }
@@ -121,6 +121,12 @@ class M_battController extends Controller
     public function m_battexport(){
         return Excel::download(new mbattsExport, 'm_batss.xlsx');
 
+    }
+
+    public function voltageUpdate(){
+        $voltageUpdate = M_batt::orderBy('updated_at', 'DESC')->first();
+        // dd($data_batt);
+        return view('voltageUpdate',["title" => "V&IR Update", "voltage" => $voltageUpdate]);
     }
 
     public function m_battimportexcel(Request $request){

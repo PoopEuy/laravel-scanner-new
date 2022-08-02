@@ -69,9 +69,8 @@ Route::post('/vendorVoltIr', [M_battController::class, 'vendorVoltIr']);
 Route::post('/findQrCode', [M_battController::class, 'findQrCode']);
 Route::get('/searchBinPage', [M_battController::class, 'searchBinPage']);
 Route::get('/searchBinData/{cell_sern_scan}', [M_battController::class, 'searchBinData']);
-// Route::post('/findQrCode', function () {
-//     echo 'FIND';
-// });
+Route::get('/voltageUpdate', [M_battController::class, 'voltageUpdate']);
+
 Route::get('/input_test', function () {
     return view('input_test',["title" => "InputTest"]);
 });

@@ -69,8 +69,7 @@
                     aler_error.style.display = "none";
                     readBin_disp.style.display = "block";
                     setTimeout(function() {
-                        cell_sern_scan = document.getElementById('cell_sern_scan');
-                        cell_sern_scan.value = '';
+                        document.getElementById("cell_sern_scan").value = '';
                     }, 500);
 
 
@@ -79,8 +78,7 @@
                     aler_error.style.display = "block";
                     readBin_disp.style.display = "none";
                     setTimeout(function() {
-                        cell_sern_scan = document.getElementById('cell_sern_scan');
-                        cell_sern_scan.value = '';
+                        document.getElementById("cell_sern_scan").value = '';
                     }, 500);
                 }
             });

@@ -22,6 +22,7 @@
                             <th>BIN</th>
                             <th>V_gr</th>
                             <th>IR_gr</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
 
@@ -51,6 +52,9 @@
                                 </td>
                                 <td>
                                     {{ $item->ir_gr }}
+                                </td>
+                                <td>
+                                    {{ $item->updated_at }}
                                 </td>
                             </tr>
                         @endforeach

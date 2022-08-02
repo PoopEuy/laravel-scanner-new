@@ -21,6 +21,8 @@
                 </li>
                 <a class="nav-link {{ $title === 'Find BINQR' ? 'active' : '' }}" href="/searchBinPage">Find BINQR</a>
                 </li>
+                <a class="nav-link {{ $title === 'V&IR Update' ? 'active' : '' }}" href="/voltageUpdate">V&IR Update</a>
+                </li>
 
             </ul>
             <form class="d-flex" role="search">
