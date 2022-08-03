@@ -4,8 +4,9 @@
             <th>No</th>
             <th>Cell Serial</th>
             <th>Carton Serial</th>
-            <th>OCVB</th>
-            <th>IMPB</th>
+            <th>IR_po (uOhm)</th>
+            <th>V_po (mV)</th>
+            <th>K (mV/Mth)</th>
             <th>BIN</th>
             <th>V_gr</th>
             <th>IR_gr</th>
@@ -30,6 +31,9 @@
                 </td>
                 <td>
                     {{ $item->v_po }}
+                </td>
+                <td>
+                    {{ $item->k }}
                 </td>
                 <td>
                     {{ $item->bin }}

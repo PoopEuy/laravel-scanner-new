@@ -29,9 +29,13 @@ class CreateMBattsTable extends Migration
             $table->float('t', 10, 4);
             $table->integer('bin')->nullable();
             $table->float('v_gr', 10, 8)->nullable();
+            $table->float('delta_mv', 10, 8)->nullable();
+            $table->string('v_status', 6)->nullable();
             $table->float('ir_gr', 10, 5)->nullable();
+            $table->float('delta_ir', 10, 5)->nullable();
+            $table->string('ir_status', 6)->nullable();
             $table->string('frame_sn', 50)->nullable();
-            $table->string('cell', 3)->nullable();
+            $table->string('cell', 5)->nullable();
             $table->timestampsTz();
             $table->string('d_test')->nullable();
         });
