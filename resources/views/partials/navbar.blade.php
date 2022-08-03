@@ -23,8 +23,8 @@
                 </li>
                 <a class="nav-link {{ $title === 'V&IR Update' ? 'active' : '' }}" href="/voltageUpdate">V&IR Update</a>
                 </li>
-                <a class="nav-link {{ $title === 'Frame Scan' ? 'active' : '' }}" href="/frameScan">Frame Scan</a>
-                </li>
+                {{-- <a class="nav-link {{ $title === 'Frame Scan' ? 'active' : '' }}" href="/frameScan">Frame Scan</a>
+                </li> --}}
 
             </ul>
             <form class="d-flex" role="search">
