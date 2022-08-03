@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\M_batt;
+use Illuminate\Support\Facades\DB;
 use App\Exports\mbattsExport;
 use App\Imports\mbattsImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -124,8 +125,12 @@ class M_battController extends Controller
     }
 
     public function voltageUpdate(){
-        $voltageUpdate = M_batt::orderBy('updated_at', 'DESC')->first();
-        // dd($data_batt);
+        // $voltageUpdate = M_batt::orderBy('updated_at', 'DESC')->first();
+        $voltageUpdate =  DB::table('m_batts')
+            ->where('d_test', '!=', null )
+            ->orderBy('d_test', 'DESC')
+            ->first();
+        // dd($voltageUpdate);
         return view('voltageUpdate',["title" => "V&IR Update", "voltage" => $voltageUpdate]);
     }
 

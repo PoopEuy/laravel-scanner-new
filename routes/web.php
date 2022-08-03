@@ -74,3 +74,10 @@ Route::get('/voltageUpdate', [M_battController::class, 'voltageUpdate']);
 Route::get('/input_test', function () {
     return view('input_test',["title" => "InputTest"]);
 });
+
+Route::get('/frameScan', function () {
+    return view('frameScan' ,
+    [
+        "title" => "Frame Scan"
+    ]);
+});
