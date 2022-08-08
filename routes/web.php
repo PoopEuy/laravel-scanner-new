@@ -71,6 +71,8 @@ Route::get('/searchBinPage', [M_battController::class, 'searchBinPage']);
 Route::get('/searchBinData/{cell_sern_scan}', [M_battController::class, 'searchBinData']);
 Route::get('/voltageUpdate', [M_battController::class, 'voltageUpdate']);
 
+Route::post('/saveFrameData/{counter}', [M_battController::class, 'saveFrameData']);
+
 Route::get('/input_test', function () {
     return view('input_test',["title" => "InputTest"]);
 });
@@ -81,3 +83,4 @@ Route::get('/frameScan', function () {
         "title" => "Frame Scan"
     ]);
 });
+Route::get('/getBattData/{batt_qr_code}', [M_battController::class, 'getBattData']);

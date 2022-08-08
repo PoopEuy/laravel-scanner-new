@@ -12,18 +12,35 @@
                         placeholder="Scan Cell Series Number" value="{{ $voltage->cell_sern }}" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword4">OCVB (V)</label>
+                    <label for="inputPassword4">V_gr (V)</label>
                     <input type="text" class="form-control" id="v_gr_scan" name="v_gr_scan" placeholder="OCVB"
                         value="{{ $voltage->v_gr }}" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword4">IMPB</label>
+                    <label for="inputPassword4">IR_gr (uOhm)</label>
                     <input type="text" class="form-control" id="ir_gr_scan" name="ir_gr_scan" placeholder="IMPB"
                         value="{{ $voltage->ir_gr }}" readonly>
                 </div>
+
+                <div class="form-group">
+                    <h1 class="display-5" style="text-align: left;">Status V Test = <strong
+                            id="vstatus">{{ $voltage->v_status }}</strong> </h1>
+                    {{-- <h2 id="vstatus" class="display-1" style="text-align: left; font-size:3rem;">
+                        {{ $voltage->v_status }}</h2> --}}
+                </div>
+
+                <div class="form-group">
+                    <h1 class="display-5" style="text-align: left;">Status IR Test = <strong
+                            id="irstatus">{{ $voltage->ir_status }}</strong> </h1>
+                    {{-- <h2 id="irstatus" class="display-1" style="text-align: left; font-size:3rem;">
+                        {{ $voltage->ir_status }}</h2> --}}
+                </div>
+
+
             </div>
-            <button type="submit" id="submit" class="btn btn-primary">Search</button>
+
             <br>
+            {{-- <button type="submit" id="submit" class="btn btn-primary">Search</button> --}}
             {{-- @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -40,29 +57,36 @@
                         value="{{ $voltage->cell_sern }}" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword4">Vendor OCVB (V)</label>
+                    <label for="inputPassword4">V_po (V)</label>
                     <input type="text" class="form-control" id="db_v_po" placeholder="Vendor OCVB (V)"
                         value="{{ $voltage->v_po }}" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword4">Vendor IMPB</label>
+                    <label for="inputPassword4">IR_po (uOhm)</label>
                     <input type="text" class="form-control" id="db_ir_po" name="db_ir_po" placeholder="IMPB"
                         value="{{ $voltage->ir_po }}" readonly>
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="inputPassword4">Vendor Carton Series Number </label>
                     <input type="text" class="form-control" id="db_crtn_sern" placeholder="Vendor Carton Series Number"
                         value="{{ $voltage->crtn_sern }}" readonly>
-                </div>
-                <div class="form-group">
+                </div> --}}
+                {{-- <div class="form-group">
                     <label for="inputPassword4">Vendor BIN</label>
                     <input type="text" class="form-control" id="db_bin" placeholder="Vendor BIN"
                         value="{{ $voltage->bin }}" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword4">Check At</label>
+                </div> --}}
+                <div class="form-group" style="display: none">
+                    <label for="inputPassword4">Checked At</label>
                     <input type="text" class="form-control" id="updated_at" placeholder="Check At "
                         value="{{ $voltage->updated_at }}" readonly>
+                </div>
+                <div class="form-group">
+                    <h1 class="display-5" style="text-align: left;">Vendor BIN</h1>
+                    <h2 id="irstatus" class="display-1" style="text-align: left; font-size:3rem;">
+                        <strong>{{ $voltage->bin }}
+                    </h2></strong>
+
                 </div>
             </div>
             <br>
@@ -76,56 +100,8 @@
     </div>
 
     <script>
-        var cookies_last;
-        var dataUpdate = document.getElementById("updated_at").value;
-        var dataView1 = document.getElementById("dataMuncul1");
-        var dataView2 = document.getElementById("dataMuncul2");
-        getCookie()
-
-        function getCookie() {
-            var cookies = document.cookie
-                .split(';')
-                .map(cookie => cookie.split('='))
-                .reduce((accumulator, [key, value]) => ({
-                    ...accumulator,
-                    [key.trim()]: decodeURIComponent(value)
-                }), {});
-
-            cookies_last = cookies.dataUpdateCookie;
-            console.log("last Cookies = " + cookies_last);
-
-            if (dataUpdate > cookies_last) {
-                //Do something..
-                // alert("Data Muncul!");
-                dataView1.style.display = "block";
-                dataView2.style.display = "block";
-                noData.style.display = "none";
-            } else {
-                // alert("Data tidak Muncul!");
-                dataView1.style.display = "none";
-                dataView2.style.display = "none";
-                noData.style.display = "block";
-            }
-
-            cetakCookies()
-        }
-
-        function cetakCookies() {
-
-            var now = new Date();
-            var time = now.getTime();
-            time += 3600 * 1000;
-            now.setTime(time);
-            document.cookie =
-                'dataUpdateCookie=' + dataUpdate +
-                '; expires=' + now.toUTCString() +
-                '; path=/';
-
-            console.log("cookies = " + document.cookie)
-        }
-
-        setTimeout(function() {
-            window.location.reload(1);
-        }, 3000);
+        var voltage_data = @json($voltage);
+        // ...
     </script>
+    <script src="js/voltageUpdate.js"></script>
 @endsection

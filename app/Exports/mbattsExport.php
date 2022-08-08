@@ -31,16 +31,16 @@ class mbattsExport implements FromCollection, WithHeadings
             'Carton Series Number',
             'Cell Weight after 2nd Electrolyte Injection (g)',
             'DC Capacity (Ah)',
-            'OCVB (V)',
-            'IMPB (mΩ）',
-            'K Value (mV/h)',
+            'V_po (mV)',
+            'IR_po (uOhm',
+            'K Value (mV/Mth)',
             'Cell Width (mm)',
             'Height at Anode Pole (mm)',
             'Height at Cathode Pole (mm)',
             'Cell Thickness (mm)',
             'BIN',
-            'V',
-            'IR'
+            'V_gr',
+            'IR_gr'
 
          ];
     }

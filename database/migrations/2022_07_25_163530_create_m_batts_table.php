@@ -30,9 +30,15 @@ class CreateMBattsTable extends Migration
             $table->integer('bin')->nullable();
             $table->float('v_gr', 10, 8)->nullable();
             $table->float('delta_mv', 10, 8)->nullable();
+            $table->float('v_min', 10, 8)->nullable();
+            $table->float('v_max', 10, 8)->nullable();
+            $table->float('v_average', 10, 8)->nullable();
             $table->string('v_status', 6)->nullable();
-            $table->float('ir_gr', 10, 5)->nullable();
-            $table->float('delta_ir', 10, 5)->nullable();
+            $table->float('ir_gr', 10, 8)->nullable();
+            $table->float('delta_ir', 10, 8)->nullable();
+            $table->float('ir_min', 10, 8)->nullable();
+            $table->float('ir_max', 10, 8)->nullable();
+            $table->float('ir_average', 10, 8)->nullable();
             $table->string('ir_status', 6)->nullable();
             $table->string('frame_sn', 50)->nullable();
             $table->string('cell', 5)->nullable();

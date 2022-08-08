@@ -9,6 +9,7 @@ use App\Exports\mbattsExport;
 use App\Imports\mbattsImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use PhpOffice\PhpSpreadsheet\Helper\Sample;
 
 class M_battController extends Controller
 {
@@ -143,4 +144,50 @@ class M_battController extends Controller
         return redirect('/batt_show');
 
     }
+
+
+    public function getBattData(Request $request, $batt_qr_code){
+
+        $frame_batt = M_batt::where('cell_sern', $batt_qr_code)->first();
+        // return view('frame_batt')->with([
+        //     'data'=>$frame_batt
+        // ]);
+        return response()->json($frame_batt);
+        // echo $frame_batt ;
+
+    }
+
+    public function saveFrameData(Request $request, $counter){
+
+        $cell_sern = $request->cell_sern;
+        $frame_sn = $request->frame_sn;
+        $bin = $request->bin;
+        $cell = $request->cell;
+        $counter = (int)$counter;
+
+        for ($i = 0; $i < $counter ; $i++){
+
+            $data = M_batt::where('cell_sern', $cell_sern[$i])->first();
+            $data->cell_sern = $cell_sern[$i];
+            $data->frame_sn = $frame_sn[$i];
+            $data->bin = $bin[$i];
+            $data->cell = $cell[$i];
+            $data->update();
+
+            // return response()->json('success', 200);
+            if($i == $counter-1){
+               return response()->json('success', 200);
+            }
+
+
+        }
+
+
+
+
+
+
+
+    }
+
 }

@@ -18,3 +18,11 @@
     border-right: 50px solid red;
     border-bottom: 25px solid transparent;
 }
+
+.binFrame {
+    margin-bottom: 15px;
+}
+
+.scanFrame {
+    margin-bottom: 20px;
+}
