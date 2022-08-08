@@ -191,7 +191,7 @@
             {{-- <button type="submit" id="submit" class="btn btn-primary">Search</button> --}}
         </div>
 
-        <div class="content">
+        <div class="content table-frame-update">
             <div class="card card-info card-outline">
                 <div class="card-header">
                     {{-- <button type="submit" class="btn btn-primary" id="tambah_data">+ Add Data</button>
@@ -440,8 +440,14 @@
                 console.log("UPDATE SUkses" + fStatus)
                 if (fStatus == 'success') {
                     frame_status.style.display = "block";
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);
                 } else {
                     frame_status.style.display = "none";
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);
                 }
             }
 
