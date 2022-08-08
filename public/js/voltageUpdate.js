@@ -3,13 +3,13 @@ let irstatus = voltage_data.ir_status;
 console.log("vstatus :" + vstatus);
 console.log("irstatus :" + irstatus);
 
-if (vstatus == "pass") {
+if (vstatus == "Pass") {
     document.getElementById("vstatus").style.color = "green";
 } else {
     document.getElementById("vstatus").style.color = "red";
 }
 
-if (irstatus == "pass") {
+if (irstatus == "Pass") {
     document.getElementById("irstatus").style.color = "green";
 } else {
     document.getElementById("irstatus").style.color = "red";

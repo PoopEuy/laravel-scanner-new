@@ -25,9 +25,11 @@ class mbattsImport implements ToModel
 
         $v_po = $row[5];
         $v_po = $v_po * 1000;
+        $v_po = ceil($v_po);
 
         $ir_po = $row[6];
         $ir_po = $ir_po * 1000;
+        $ir_po = ceil($ir_po);
 
         $k_value = $row[7];
         $k_value = $k_value * 730;
