@@ -126,11 +126,11 @@ class M_battController extends Controller
     }
 
     public function voltageUpdate(){
-        $voltageUpdate = M_batt::orderBy('updated_at', 'DESC')->first();
-        // $voltageUpdate =  DB::table('m_batts')
-        //     ->where('d_test', '!=', null )
-        //     ->orderBy('d_test', 'DESC')
-        //     ->first();
+        // $voltageUpdate = M_batt::orderBy('updated_at', 'DESC')->first();
+        $voltageUpdate =  DB::table('m_batts')
+            ->where('d_test', '!=', 'null' )
+            ->orderBy('d_test', 'DESC')
+            ->first();
         // dd($voltageUpdate);
         return view('voltageUpdate',["title" => "V&IR Update", "voltage" => $voltageUpdate]);
     }
