@@ -302,7 +302,6 @@
             })
 
 
-
             function autoSave() {
                 $("#save_frame").click();
             }
@@ -314,23 +313,32 @@
                     url: "{{ url('getBattData') }}/" + batt_qr_code,
                     // data: "name=" + name,
                     success: function(frame_batt) {
-
-                        scanCounter = scanCounter + 1;
-
                         nilai_cellSern = frame_batt.cell_sern;
-                        nilai_bin = frame_batt.bin;
-                        nilai_cell = frame_batt.cell;
-                        document.getElementById("currBin").textContent = nilai_bin;
 
-                        if (scanCounter == 1) {
-                            console.log("scan Counter 1")
-                            nilai_firstBin = frame_batt.bin;
-                            document.getElementById("firstBin").textContent = nilai_firstBin;
+
+                        if (nilai_cellSern != undefined) {
+                            scanCounter = scanCounter + 1;
+                            nilai_cellSern = frame_batt.cell_sern;
+                            nilai_bin = frame_batt.bin;
+                            nilai_cell = frame_batt.cell;
+                            document.getElementById("currBin").textContent = nilai_bin;
+
+                            if (scanCounter == 1) {
+                                console.log("scan Counter 1")
+                                nilai_firstBin = frame_batt.bin;
+                                document.getElementById("firstBin").textContent = nilai_firstBin;
+                            } else {
+                                console.log("scan Counter bukan1")
+                            }
+
+                            binCheck();
+
                         } else {
-                            console.log("scan Counter bukan1")
+                            alert("Data Not Found, Please Check Again !!");
+                            document.getElementById("batt_qr").focus();
+                            document.getElementById("batt_qr").value = '';
                         }
 
-                        binCheck();
                     },
                     error: function(xhr, status, error) {}
                 });
@@ -344,8 +352,10 @@
                 console.log("BEFORE SERN = " + sern_before)
                 console.log("BEFORE isInArray = " + isInArray)
                 console.log("Cek Cell = " + nilai_cell)
+                console.log("Nilai Bin = " + nilai_bin)
 
-                if (nilai_firstBin == nilai_bin && isInArray == false && nilai_cell == null) {
+                if (nilai_firstBin == nilai_bin && isInArray == false && nilai_cell == null && nilai_bin !=
+                    undefined) {
                     console.log("nilaibin sama, lanjut proses = " + baris)
                     toogleWarna = baris + 1;
                     // document.getElementById("cell" + toogleWarna).style.color = "green";
@@ -356,7 +366,7 @@
                     cetakData();
                 } else {
                     console.log("nilai bin berbeda, atau batterai serial sama harap cek = " + baris)
-                    console.log("nilai serial" + nilai_cellSern)
+                    console.log("nilai serial = " + nilai_cellSern)
                     toogleWarna = baris + 1;
                     // document.getElementById("cell" + toogleWarna).style.color = "red";
                     document.getElementById("cell" + toogleWarna).style.backgroundColor = "red";
