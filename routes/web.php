@@ -84,3 +84,4 @@ Route::get('/frameScan', function () {
     ]);
 });
 Route::get('/getBattData/{batt_qr_code}', [M_battController::class, 'getBattData']);
+Route::get('/getFrameData/{frameValue}', [M_battController::class, 'getFrameData']);

@@ -159,6 +159,18 @@ class M_battController extends Controller
 
     }
 
+    public function getFrameData(Request $request, $frameValue){
+
+        $frame_data = M_batt::where('frame_sn', $frameValue)->first();
+        // return view('frame_batt')->with([
+        //     'data'=>$frame_batt
+        // ]);
+        // dd($frame_data);
+        return response()->json($frame_data);
+        // echo $frame_batt ;
+
+    }
+
     public function saveFrameData(Request $request, $counter){
 
         $cell_sern = $request->cell_sern;

@@ -275,9 +275,36 @@
             });
 
             $('body').on('click', '#cari_frame', function() {
-                document.getElementById("batt_qr").focus();
-                document.getElementById("batt_qr").value = '';
+                // document.getElementById("batt_qr").focus();
+                // document.getElementById("batt_qr").value = '';
+                frameValue = document.getElementById("frame_qr").value;
+
+                searchFrame(frameValue);
             })
+
+            function searchFrame(frameValue) {
+
+                $.ajax({
+                    type: "get",
+                    url: "{{ url('getFrameData') }}/" + frameValue,
+                    // data: "name=" + name,
+                    success: function(frame_data) {
+                        frameData = frame_data.frame_sn;
+                        console.log("frameData = " + frameData);
+                        if (frameData == undefined) {
+                            document.getElementById("batt_qr").focus();
+                            document.getElementById("batt_qr").value = '';
+
+                        } else {
+                            alert("Frames Already Exist");
+                            document.getElementById("frame_qr").focus();
+                            document.getElementById("frame_qr").value = '';
+                        }
+                    },
+                    error: function(xhr, status, error) {}
+                });
+            }
+
 
             $("#batt_qr").keyup(function(event) {
                 if (event.keyCode === 13) {
@@ -296,11 +323,9 @@
                     console.log("frame_qr_code = " + frame_qr_code)
 
                     searchBatt(batt_qr_code);
-
                 }
 
             })
-
 
             function autoSave() {
                 $("#save_frame").click();
