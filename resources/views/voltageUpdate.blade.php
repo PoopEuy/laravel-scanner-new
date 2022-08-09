@@ -4,7 +4,7 @@
     {{-- {{ $scan }} --}}
     {{-- @dd($voltage) --}}
 
-    @if ($voltage != 'null')
+    @if ($voltage != null)
         <div class="row">
             <div class="form-group col-md-6" id="dataMuncul1">
                 <div class="form-row">
