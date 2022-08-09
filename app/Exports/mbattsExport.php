@@ -18,7 +18,7 @@ class mbattsExport implements FromCollection, WithHeadings
         // return M_batt::all();
         // return DB::table('m_batts')->where('ir_gr', '!=', null )->where('v_gr', '!=', null )->get();
         return DB::table('m_batts')
-            ->select('cell_sern', 'capa_grad', 'crtn_sern', 'm', 'c_po', 'v_po', 'ir_po', 'k', 'w', 'ha', 'hc', 't', 'bin', 'v_gr', 'ir_gr')
+            ->select('cell_sern', 'capa_grad', 'crtn_sern', 'm', 'c_po', 'v_po', 'ir_po', 'k', 'w', 'ha', 'hc', 't', 'bin', 'v_gr', 'v_status', 'ir_gr', 'ir_status')
             ->where('ir_gr', '!=', null )
             ->where('v_gr', '!=', null )
             ->get();
@@ -40,7 +40,9 @@ class mbattsExport implements FromCollection, WithHeadings
             'Cell Thickness (mm)',
             'BIN',
             'V_gr',
-            'IR_gr'
+            'V_Status',
+            'IR_gr',
+            'IR_Status'
 
          ];
     }

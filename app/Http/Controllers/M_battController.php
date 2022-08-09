@@ -121,7 +121,9 @@ class M_battController extends Controller
     }
 
     public function m_battexport(){
-        return Excel::download(new mbattsExport, 'm_batss.xlsx');
+        $timezone = time() + (60 * 60 * 7);
+        $date_now = gmdate('d-m-Y H:i:s', $timezone);
+        return Excel::download(new mbattsExport, 'm_batss_'.$date_now.'.xlsx');
 
     }
 

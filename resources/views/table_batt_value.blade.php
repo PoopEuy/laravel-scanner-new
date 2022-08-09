@@ -9,7 +9,9 @@
             <th>K (mV/Mth)</th>
             <th>BIN</th>
             <th>V_gr</th>
+            <th>V_Status</th>
             <th>IR_gr</th>
+            <th>IR_Status</th>
             <th>Update</th>
         </tr>
     </thead>
@@ -42,7 +44,13 @@
                     {{ $item->v_gr }}
                 </td>
                 <td>
+                    {{ $item->v_status }}
+                </td>
+                <td>
                     {{ $item->ir_gr }}
+                </td>
+                <td>
+                    {{ $item->ir_status }}
                 </td>
                 <td>
                     {{ $item->updated_at }}
