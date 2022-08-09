@@ -183,7 +183,8 @@ class M_battController extends Controller
 
             $data = M_batt::where('cell_sern', $cell_sern[$i])->first();
             $data->cell_sern = $cell_sern[$i];
-            $data->frame_sn = $frame_sn[$i];
+            // $data->frame_sn = $frame_sn[$i];
+            $data->frame_sn = $frame_sn;
             $data->bin = $bin[$i];
             $data->cell = $cell[$i];
             $data->update();

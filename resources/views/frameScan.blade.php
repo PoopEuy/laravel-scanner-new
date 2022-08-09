@@ -22,15 +22,6 @@
 
             <div class="row scanFrame">
                 <div class="form-group col-md-6">
-                    <label for="inputEmail4">Scan Frame QR</label>
-                    <input type="text" class="form-control" id="frame_qr" name="frame_qr" placeholder="Scan Frame QR"
-                        value="">
-                    <br>
-                    <button type="submit" id="cari_frame" class="btn btn-primary" style="display: none">Frame</button>
-
-                    <button type="submit" id="save_frame" class="btn btn-primary" style="display: none">Save Frame</button>
-                </div>
-                <div class="form-group col-md-6">
                     <label for="inputEmail4">Scan Battery QR</label>
                     <input type="text" class="form-control" id="batt_qr" name="batt_qr" placeholder="Scan Battery QR"
                         value="">
@@ -41,6 +32,16 @@
                         Frame Data Saved Successfully
                     </div>
                 </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Scan Frame QR</label>
+                    <input type="text" class="form-control" id="frame_qr" name="frame_qr" placeholder="Scan Frame QR"
+                        value="">
+                    <br>
+                    <button type="submit" id="cari_frame" class="btn btn-primary" style="display: none">Frame</button>
+
+                    <button type="submit" id="save_frame" class="btn btn-primary" style="display: none">Save Frame</button>
+                </div>
+
                 <br>
 
 
@@ -204,7 +205,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Cell Serial</th>
-                                    <th>Frame Serial</th>
+                                    {{-- <th>Frame Serial</th> --}}
                                     <th>BIN</th>
                                     <th>Cell</th>
                                     {{-- <th>Aksi</th> --}}
@@ -268,6 +269,23 @@
 
             })
 
+            $("#batt_qr").keyup(function(event) {
+                if (event.keyCode === 13) {
+                    $("#cari_batt").click();
+                }
+            });
+
+            $('body').on('click', '#cari_batt', function() {
+
+
+                batt_qr_code = document.getElementById("batt_qr").value;
+                console.log("batt qr = " + batt_qr_code)
+                console.log("frame_qr_code = " + frame_qr_code)
+
+                searchBatt(batt_qr_code);
+
+            })
+
             $("#frame_qr").keyup(function(event) {
                 if (event.keyCode === 13) {
                     $("#cari_frame").click();
@@ -275,25 +293,28 @@
             });
 
             $('body').on('click', '#cari_frame', function() {
-                // document.getElementById("batt_qr").focus();
-                // document.getElementById("batt_qr").value = '';
-                frameValue = document.getElementById("frame_qr").value;
+                frame_qr_code = document.getElementById("frame_qr").value;
 
-                searchFrame(frameValue);
+                if (!frame_qr_code.replace(/\s/g, '').length) {
+                    alert("Please Fill in the Frame Code First");
+                } else {
+                    searchFrame(frame_qr_code);
+                }
+
+
             })
 
-            function searchFrame(frameValue) {
+            function searchFrame(frame_qr_code) {
 
                 $.ajax({
                     type: "get",
-                    url: "{{ url('getFrameData') }}/" + frameValue,
+                    url: "{{ url('getFrameData') }}/" + frame_qr_code,
                     // data: "name=" + name,
                     success: function(frame_data) {
                         frameData = frame_data.frame_sn;
                         console.log("frameData = " + frameData);
                         if (frameData == undefined) {
-                            document.getElementById("batt_qr").focus();
-                            document.getElementById("batt_qr").value = '';
+                            autoSave();
 
                         } else {
                             alert("Frames Already Exist");
@@ -306,26 +327,7 @@
             }
 
 
-            $("#batt_qr").keyup(function(event) {
-                if (event.keyCode === 13) {
-                    $("#cari_batt").click();
-                }
-            });
 
-            $('body').on('click', '#cari_batt', function() {
-
-                frame_qr_code = document.getElementById("frame_qr").value;
-                if (!frame_qr_code.replace(/\s/g, '').length) {
-                    alert("Please Fill in the Frame Code First");
-                } else {
-                    batt_qr_code = document.getElementById("batt_qr").value;
-                    console.log("batt qr = " + batt_qr_code)
-                    console.log("frame_qr_code = " + frame_qr_code)
-
-                    searchBatt(batt_qr_code);
-                }
-
-            })
 
             function autoSave() {
                 $("#save_frame").click();
@@ -395,6 +397,14 @@
                     toogleWarna = baris + 1;
                     // document.getElementById("cell" + toogleWarna).style.color = "red";
                     document.getElementById("cell" + toogleWarna).style.backgroundColor = "red";
+                    if (scanCounter == 1) {
+                        setTimeout(function() {
+                            location.reload();
+                        }, 500);
+                    } else {
+                        console.log("LANJUT")
+                    }
+
                 }
 
             }
@@ -407,7 +417,7 @@
                 var html = "<tr id='cell" + baris + "'>"
                 html += "<td>" + baris + "</td>"
                 html += "<td class='input_cell_sern'>" + nilai_cellSern + "</td>"
-                html += "<td class='input_frame_sn'>" + frame_qr_code + "</td>"
+                // html += "<td class='input_frame_sn'>" + frame_qr_code + "</td>"
                 html += "<td class='input_bin_input'>" + nilai_bin + "</td>"
                 html += "<td class='input_cell_input'>" + cell + "</td>"
                 // html += "<td ><button class='btn btn-danger' data-row='baris" + baris +
@@ -416,7 +426,9 @@
                 $('#table1').append(html)
 
                 if (counter == 32) {
-                    autoSave();
+                    // autoSave();
+                    document.getElementById("frame_qr").focus();
+                    document.getElementById("frame_qr").value = '';
                 }
             }
 
@@ -424,7 +436,7 @@
                 console.log("Save Frame")
 
                 let input_cell_sern = []
-                let input_frame_sn = []
+                // let input_frame_sn = []
                 let input_bin_input = []
                 let input_cell_input = []
 
@@ -432,9 +444,9 @@
                     input_cell_sern.push($(this).text())
                 })
 
-                $('.input_frame_sn').each(function() {
-                    input_frame_sn.push($(this).text())
-                })
+                // $('.input_frame_sn').each(function() {
+                //     input_frame_sn.push($(this).text())
+                // })
 
                 $('.input_bin_input').each(function() {
                     input_bin_input.push($(this).text())
@@ -450,7 +462,7 @@
                     url: "{{ url('saveFrameData') }}/" + counter,
                     data: {
                         cell_sern: input_cell_sern,
-                        frame_sn: input_frame_sn,
+                        frame_sn: frame_qr_code,
                         bin: input_bin_input,
                         cell: input_cell_input,
                         "_token": "{{ csrf_token() }}"
@@ -487,7 +499,7 @@
             }
 
             window.onload = function() {
-                document.getElementById("frame_qr").focus();
+                document.getElementById("batt_qr").focus();
             };
 
 
