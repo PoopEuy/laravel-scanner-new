@@ -30,3 +30,11 @@
 .table-frame-update {
     margin-top: 100px;
 }
+
+.centered-view {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}

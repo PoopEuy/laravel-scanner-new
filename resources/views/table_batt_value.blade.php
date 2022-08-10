@@ -6,7 +6,7 @@
             <th>Carton Serial</th>
             <th>IR_po (uOhm)</th>
             <th>V_po (mV)</th>
-            <th>K (mV/Mth)</th>
+            {{-- <th>K (mV/Mth)</th> --}}
             <th>BIN</th>
             <th>V_gr</th>
             <th>V_Status</th>
@@ -34,9 +34,9 @@
                 <td>
                     {{ $item->v_po }}
                 </td>
-                <td>
+                {{-- <td>
                     {{ $item->k }}
-                </td>
+                </td> --}}
                 <td>
                     {{ $item->bin }}
                 </td>

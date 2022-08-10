@@ -20,7 +20,7 @@ use App\Http\Controllers\M_battController;
 */
 
 Route::get('/', function () {
-    return view('home',["title" => "Home"]);
+    return view('home',["title" => "Home","image" => "Sundaya_Logo.png"]);
 });
 
 Route::get('/upload_data', function () {
