@@ -14,7 +14,8 @@ use PhpOffice\PhpSpreadsheet\Helper\Sample;
 class M_battController extends Controller
 {
    public function batt_show(){
-        $data_batt = M_batt::orderBy('updated_at', 'DESC')->paginate(15);
+        // $data_batt = M_batt::orderBy('updated_at', 'DESC')->paginate(15);
+        $data_batt = DB::table('m_batts')->latest('updated_at')->distinct()->paginate(20);
         // dd($data_batt);
         return view('tabel_batt',["title" => "DataBatt", "data_batt" => $data_batt]);
     }

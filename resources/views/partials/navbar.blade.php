@@ -14,18 +14,30 @@
                     <li class="nav-item">
                     <a class="nav-link {{($title === "About" ? 'active' : '')}}" href="/about">About</a>
                     </li>
+                    <li class="nav-item">
                     <a class="nav-link {{($title === "Posts" ? 'active' : '')}}" href="/posts">Blog</a>
                     </li>
+                    <li class="nav-item">
                     <a class="nav-link {{($title === "Scan" ? 'active' : '')}}" href="/scan">Scan</a>
                     </li> --}}
-                <a class="nav-link {{ $title === 'DataBatt' ? 'active' : '' }}" href="/batt_show">DataBatt</a>
+                <li class="nav-item">
+                    <a class="nav-link {{ $title === 'DataBatt' ? 'active' : '' }}" href="/batt_show">DataBatt</a>
                 </li>
-                <a class="nav-link {{ $title === 'Find BINQR' ? 'active' : '' }}" href="/searchBinPage">Find BINQR</a>
+                <li class="nav-item">
+                    <a class="nav-link {{ $title === 'Find BINQR' ? 'active' : '' }}" href="/searchBinPage">Find
+                        BINQR</a>
                 </li>
-                <a class="nav-link {{ $title === 'V&IR Update' ? 'active' : '' }}" href="/voltageUpdate">V&IR Update</a>
+                <li class="nav-item">
+                    <a class="nav-link {{ $title === 'V&IR Update' ? 'active' : '' }}" href="/voltageUpdate">V&IR
+                        Update</a>
                 </li>
-                <a class="nav-link {{ $title === 'Frame Scan' ? 'active' : '' }}" href="/frameScan">Frame Scan</a>
+                <li class="nav-item">
+                    <a class="nav-link {{ $title === 'Frame Scan' ? 'active' : '' }}" href="/frameScan">Frame Scan</a>
                 </li>
+                {{-- <li class="nav-item">
+                    <a class="nav-link {{ $title === 'Frame Scan2' ? 'active' : '' }}" href="/frameScan2">Frame
+                        Scan2</a>
+                </li> --}}
 
             </ul>
             {{-- <form class="d-flex" role="search">
