@@ -84,7 +84,7 @@
                         <div class="kotak-kotak">
                             <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black"
                                 id={{ "cell$i " }} style="background-color: black">
-                                <span style="font-size:30px;color:white;background-color:"><i class="fa fa-caret-left"></i>
+                                <span style="font-size:30px;color:white;"><i class="fa fa-caret-left"></i>
                                     {{ "C$i " }} </span>
                             </div>
                         </div>
@@ -280,7 +280,6 @@
 
                 batt_qr_code = document.getElementById("batt_qr").value;
                 console.log("batt qr = " + batt_qr_code)
-                console.log("frame_qr_code = " + frame_qr_code)
 
                 searchBatt(batt_qr_code);
 
@@ -314,13 +313,50 @@
                         frameData = frame_data.frame_sn;
                         console.log("frameData = " + frameData);
                         if (frameData == undefined) {
-                            autoSave();
+                            // autoSave();
+                            searchFrame2(frame_qr_code)
 
                         } else {
                             alert("Frames Already Exist");
                             document.getElementById("frame_qr").focus();
                             document.getElementById("frame_qr").value = '';
                         }
+                    },
+                    error: function(xhr, status, error) {}
+                });
+            }
+
+            //cek apakah frame_qr adalah kode QR baterai, jika bukan maka lolos
+            function searchFrame2(frame_qr_code) {
+
+                $.ajax({
+                    type: "get",
+                    url: "{{ url('getBattData') }}/" + frame_qr_code,
+                    // data: "name=" + name,
+                    success: function(frame_batt) {
+                        frameData2 = frame_batt.cell_sern;
+                        console.log("frameData2 = " + frameData2);
+                        //jika frame scan bukan kode beterai, maka update data
+                        if (frameData2 == undefined) {
+                            if (counter == 32) {
+                                autoSave();
+                                console.log("LANJUT UPDATE")
+
+                            } else {
+                                alert("The Battery Scan is Not Complete !!!");
+                                document.getElementById("batt_qr").focus();
+                                document.getElementById("batt_qr").value = '';
+                            }
+
+
+
+                        } else {
+                            alert("Battery Serial Code Cannot be Used as Frame Serial Code : " +
+                                frameData2);
+                            document.getElementById("frame_qr").focus();
+                            document.getElementById("frame_qr").value = '';
+                        }
+
                     },
                     error: function(xhr, status, error) {}
                 });

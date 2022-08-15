@@ -34,10 +34,10 @@
                 <li class="nav-item">
                     <a class="nav-link {{ $title === 'Frame Scan' ? 'active' : '' }}" href="/frameScan">Frame Scan</a>
                 </li>
-                {{-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link {{ $title === 'Frame Scan2' ? 'active' : '' }}" href="/frameScan2">Frame
                         Scan2</a>
-                </li> --}}
+                </li>
 
             </ul>
             {{-- <form class="d-flex" role="search">

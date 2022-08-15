@@ -56,7 +56,7 @@
                         <div class="form-group col-md-12">
                             <div class="kotak-kotak">
                                 <div class="ssb-icon" id={{ "cell$i$a" }} style="background-color: black">
-                                    <span style="font-size:30px;color:white;background-color:">
+                                    <span style="font-size:30px;color:white;">
                                         {{ "$i$a " }} <i class="fa fa-caret-right"></i></span>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                         <div class="form-group col-md-12">
                             <div class="kotak-kotak">
                                 <div class="ssb-icon" id={{ "cell$i$b" }} style="background-color: black">
-                                    <span style="font-size:30px;color:white;background-color:">
+                                    <span style="font-size:30px;color:white;">
                                         {{ "$i$b " }} <i class="fa fa-caret-right"></i></span>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                         <div class="form-group col-md-12">
                             <div class="kotak-kotak">
                                 <div class="ssb-icon" id={{ "cell$i$a" }} style="background-color: black">
-                                    <span style="font-size:30px;color:white;background-color:">
+                                    <span style="font-size:30px;color:white;">
                                         <i class="fa fa-caret-left"></i> {{ "$i$a " }} </span>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                         <div class="form-group col-md-12">
                             <div class="kotak-kotak">
                                 <div class="ssb-icon" id={{ "cell$i$b" }} style="background-color: black">
-                                    <span style="font-size:30px;color:white;background-color:">
+                                    <span style="font-size:30px;color:white;">
                                         <i class="fa fa-caret-left"></i> {{ "$i$b " }} </span>
                                 </div>
                             </div>
@@ -99,6 +99,88 @@
                     </div>
                 @endfor
             </div>
+
+            <div class="row ">
+                @php
+                    $a = 'a';
+                    $b = 'b';
+                @endphp
+                @for ($i = 7; $i < 10; $i++)
+                    <div class="row col-md-4">
+                        <div class="form-group col-md-12">
+                            <div class="kotak-kotak">
+                                <div class="ssb-icon" id={{ "cell$i$a" }} style="background-color: black">
+                                    <span style="font-size:30px;color:white;">
+                                        {{ "$i$a " }} <i class="fa fa-caret-right"></i> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="kotak-kotak">
+                                <div class="ssb-icon" id={{ "cell$i$b" }} style="background-color: black">
+                                    <span style="font-size:30px;color:white;">
+                                        {{ "$i$b " }} <i class="fa fa-caret-right"></i> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+
+            <div class="row ">
+                @php
+                    $a = 'a';
+                    $b = 'b';
+                @endphp
+                @for ($i = 12; $i > 9; $i--)
+                    <div class="row col-md-4">
+                        <div class="form-group col-md-12">
+                            <div class="kotak-kotak">
+                                <div class="ssb-icon" id={{ "cell$i$a" }} style="background-color: black">
+                                    <span style="font-size:30px;color:white;">
+                                        <i class="fa fa-caret-left"></i> {{ "$i$a " }} </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="kotak-kotak">
+                                <div class="ssb-icon" id={{ "cell$i$b" }} style="background-color: black">
+                                    <span style="font-size:30px;color:white;">
+                                        <i class="fa fa-caret-left"></i> {{ "$i$b " }} </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+
+            <div class="row ">
+                @php
+                    $a = 'a';
+                    $b = 'b';
+                @endphp
+                @for ($i = 13; $i < 16; $i++)
+                    <div class="row col-md-4">
+                        <div class="form-group col-md-12">
+                            <div class="kotak-kotak">
+                                <div class="ssb-icon" id={{ "cell$i$a" }} style="background-color: black">
+                                    <span style="font-size:30px;color:white;">
+                                        {{ "$i$a " }} <i class="fa fa-caret-right"></i> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="kotak-kotak">
+                                <div class="ssb-icon" id={{ "cell$i$b" }} style="background-color: black">
+                                    <span style="font-size:30px;color:white;">
+                                        {{ "$i$b " }} <i class="fa fa-caret-right"></i> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+
 
 
 
@@ -154,6 +236,7 @@
         let huruf = 'a';
         let scanCounter = 0
         var sern_before = new Array();
+        let counter;
 
         $("#batt_qr").keyup(function(event) {
             if (event.keyCode === 13) {
@@ -169,6 +252,24 @@
             console.log("frame_qr_code = " + frame_qr_code)
 
             searchBatt(batt_qr_code)
+
+        })
+
+        $("#frame_qr").keyup(function(event) {
+            if (event.keyCode === 13) {
+                $("#cari_frame").click();
+            }
+        });
+
+        $('body').on('click', '#cari_frame', function() {
+            frame_qr_code = document.getElementById("frame_qr").value;
+
+            if (!frame_qr_code.replace(/\s/g, '').length) {
+                alert("Please Fill in the Frame Code First");
+            } else {
+                searchFrame(frame_qr_code);
+            }
+
 
         })
 
@@ -270,45 +371,16 @@
                         location.reload();
                     }, 500);
                 } else {
-                    console.log("LANJUT")
+                    console.log("Bukan data AWAL, LANJUT")
                 }
 
             }
 
         }
 
-        // function checkData() {
-        //     console.log("button terklik");
-
-        //     baris = baris + 1
-        //     if (huruf == 'a') {
-        //         input_cell = cell_value + huruf
-
-        //         console.log("HURUF1 = " + input_cell)
-        //         huruf = 'b'
-
-        //         document.getElementById("batt_qr").value = '';
-        //         document.getElementById("batt_qr").focus();
-        //         document.getElementById("cell" + input_cell).style.backgroundColor = "green";
-        //     } else if (huruf == 'b') {
-
-        //         input_cell = cell_value + huruf
-        //         cell_value = cell_value + 1;
-        //         console.log("HURUF2 = " + input_cell)
-        //         huruf = 'a'
-
-        //         document.getElementById("batt_qr").value = '';
-        //         document.getElementById("batt_qr").focus();
-        //         document.getElementById("cell" + input_cell).style.backgroundColor = "red";
-        //     } else {}
-
-
-
-
-        // }
-
         function cetakData() {
             baris = baris + 1
+            counter = baris;
             var html = "<tr id='baris" + baris + "'>"
             html += "<td>" + baris + "</td>"
             html += "<td class='cell_sern'>" + batt_qr_code + "</td>"
@@ -317,6 +389,68 @@
             html += "<td class='input_cell'>" + input_cell + "</td>"
 
             $('#table1').append(html)
+
+            if (counter == 30) {
+                // autoSave();
+                document.getElementById("frame_qr").focus();
+                document.getElementById("frame_qr").value = '';
+            }
+        }
+
+        //cek apakah frame sudah pernah di pakai
+        function searchFrame(frame_qr_code) {
+            $.ajax({
+                type: "get",
+                url: "{{ url('getFrameData') }}/" + frame_qr_code,
+                // data: "name=" + name,
+                success: function(frame_data) {
+                    frameData = frame_data.frame_sn;
+                    console.log("frameData = " + frameData);
+                    if (frameData == undefined) {
+                        // autoSave();
+                        searchFrame2(frame_qr_code)
+
+                    } else {
+                        alert("Frames Already Exist");
+                        document.getElementById("frame_qr").focus();
+                        document.getElementById("frame_qr").value = '';
+                    }
+                },
+                error: function(xhr, status, error) {}
+            });
+        }
+
+        //cek apakah frame_qr adalah kode QR baterai
+        function searchFrame2(frame_qr_code) {
+
+            $.ajax({
+                type: "get",
+                url: "{{ url('getBattData') }}/" + frame_qr_code,
+                // data: "name=" + name,
+                success: function(frame_batt) {
+                    frameData2 = frame_batt.cell_sern;
+                    console.log("frameData2 = " + frameData2);
+                    //jika frame scan bukan kode beterai, maka update data
+                    if (frameData2 == undefined) {
+                        if (counter == 32) {
+                            // autoSave();
+                            console.log("LANJUT UPDATE")
+                        } else {
+                            alert("The Battery Scan is Not Complete !!!");
+                            document.getElementById("batt_qr").focus();
+                            document.getElementById("batt_qr").value = '';
+                        }
+
+                    } else {
+                        alert("Battery Serial Code Cannot be Used as Frame Serial Code : " +
+                            frameData2);
+                        document.getElementById("frame_qr").focus();
+                        document.getElementById("frame_qr").value = '';
+                    }
+
+                },
+                error: function(xhr, status, error) {}
+            });
         }
 
         window.onload = function() {
