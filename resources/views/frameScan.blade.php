@@ -277,10 +277,8 @@
 
             $('body').on('click', '#cari_batt', function() {
 
-
                 batt_qr_code = document.getElementById("batt_qr").value;
                 console.log("batt qr = " + batt_qr_code)
-
                 searchBatt(batt_qr_code);
 
             })
@@ -304,7 +302,6 @@
             })
 
             function searchFrame(frame_qr_code) {
-
                 $.ajax({
                     type: "get",
                     url: "{{ url('getFrameData') }}/" + frame_qr_code,
@@ -348,22 +345,16 @@
                                 document.getElementById("batt_qr").value = '';
                             }
 
-
-
                         } else {
                             alert("Battery Serial Code Cannot be Used as Frame Serial Code : " +
                                 frameData2);
                             document.getElementById("frame_qr").focus();
                             document.getElementById("frame_qr").value = '';
                         }
-
                     },
                     error: function(xhr, status, error) {}
                 });
             }
-
-
-
 
             function autoSave() {
                 $("#save_frame").click();
@@ -377,7 +368,6 @@
                     // data: "name=" + name,
                     success: function(frame_batt) {
                         nilai_cellSern = frame_batt.cell_sern;
-
 
                         if (nilai_cellSern != undefined) {
                             scanCounter = scanCounter + 1;
@@ -395,7 +385,6 @@
                             }
 
                             binCheck();
-
                         } else {
                             alert("Data Not Found, Please Check Again !!");
                             document.getElementById("batt_qr").focus();
@@ -470,7 +459,6 @@
 
             $('body').on('click', '#save_frame', function() {
                 console.log("Save Frame")
-
                 let input_cell_sern = []
                 // let input_frame_sn = []
                 let input_bin_input = []
@@ -514,9 +502,7 @@
                         fstatus = xhr;
                         frameStatus(fstatus);
                     }
-
                 });
-
             })
 
             function frameStatus(fStatus) {
