@@ -178,6 +178,8 @@ class M_battController extends Controller
         $frame_sn = $request->frame_sn;
         $bin = $request->bin;
         $cell = $request->cell;
+        $v_status = $request->v_status;
+        $ir_status = $request->ir_status;
         $counter = (int)$counter;
 
         for ($i = 0; $i < $counter ; $i++){
@@ -188,6 +190,8 @@ class M_battController extends Controller
             $data->frame_sn = $frame_sn;
             $data->bin = $bin[$i];
             $data->cell = $cell[$i];
+            $data->v_status = $v_status[$i];
+            $data->ir_status = $ir_status[$i];
             $data->update();
 
             // return response()->json('success', 200);

@@ -20,6 +20,20 @@
                 </div>
             </div>
 
+            <div class="row statusBatt">
+                <div class="form-group col-md-6">
+                    <h1 class="display-6" style="text-align: left;">Status V Test = <strong id="vstatus"></strong> </h1>
+                    {{-- <h2 id="vstatus" class="display-1" style="text-align: left; font-size:3rem;">
+                        {{ $voltage->v_status }}</h2> --}}
+                </div>
+                <div class="form-group col-md-6">
+                    <h1 class="display-6" style="text-align: left;">Status IR Test = <strong id="irstatus"></strong> </h1>
+                    {{-- <h2 id="irstatus" class="display-1" style="text-align: left; font-size:3rem;">
+                        {{ $voltage->ir_status }}</h2> --}}
+                </div>
+
+            </div>
+
             <div class="row scanFrame">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Scan Battery QR</label>
@@ -208,6 +222,8 @@
                                     {{-- <th>Frame Serial</th> --}}
                                     <th>BIN</th>
                                     <th>Cell</th>
+                                    <th>mV status</th>
+                                    <th>IR status</th>
                                     {{-- <th>Aksi</th> --}}
 
                                 </tr>
@@ -241,6 +257,12 @@
             var nilai_cellSern;
             var nilai_cell;
             var sern_before = new Array();
+
+            let delta_mv;
+            let delta_ir;
+            let mv_status;
+            let ir_status;
+            let final_status;
             let baris = 0
             let scanCounter = 0
             let counter;
@@ -374,17 +396,22 @@
                             nilai_cellSern = frame_batt.cell_sern;
                             nilai_bin = frame_batt.bin;
                             nilai_cell = frame_batt.cell;
+                            delta_mv = frame_batt.delta_mv;
+                            delta_ir = frame_batt.delta_ir;
                             document.getElementById("currBin").textContent = nilai_bin;
 
                             if (scanCounter == 1) {
                                 console.log("scan Counter 1")
                                 nilai_firstBin = frame_batt.bin;
                                 document.getElementById("firstBin").textContent = nilai_firstBin;
+
+                                statusCheck()
                             } else {
                                 console.log("scan Counter bukan1")
+                                statusCheck()
                             }
 
-                            binCheck();
+                            // binCheck();
                         } else {
                             alert("Data Not Found, Please Check Again !!");
                             document.getElementById("batt_qr").focus();
@@ -396,23 +423,53 @@
                 });
             }
 
+            function statusCheck() {
+                if (delta_mv > 17) {
+                    mv_status = 'Fail'
+                } else if (delta_mv >= 13.0) {
+                    mv_status = 'Pass'
+                } else {
+                    mv_status = 'Fail'
+                }
+
+                if (delta_ir > 262.5) {
+                    ir_status = 'Fail'
+                } else if (delta_ir >= 175.0) {
+                    ir_status = 'Pass'
+                } else {
+                    ir_status = 'Fail'
+                }
+
+                if (mv_status == 'Fail' || ir_status == 'Fail') {
+                    final_status = "Fail"
+                } else {
+                    final_status = "Pass"
+                }
+
+                binCheck()
+            }
+
             function binCheck() {
+                document.getElementById("vstatus").textContent = mv_status;
+                document.getElementById("irstatus").textContent = ir_status;
+                const isInArray = sern_before.includes(nilai_cellSern);
+
                 document.getElementById("batt_qr").value = '';
                 document.getElementById("batt_qr").focus();
 
-                const isInArray = sern_before.includes(nilai_cellSern);
                 console.log("BEFORE SERN = " + sern_before)
                 console.log("BEFORE isInArray = " + isInArray)
                 console.log("Cek Cell = " + nilai_cell)
                 console.log("Nilai Bin = " + nilai_bin)
+                console.log("Delta Mv = " + mv_status + " " + delta_mv)
+                console.log("Delta IR = " + ir_status + " " + delta_ir)
+                console.log("FINAL STATUS = " + final_status)
 
                 if (nilai_firstBin == nilai_bin && isInArray == false && nilai_cell == null && nilai_bin !=
-                    undefined) {
+                    undefined && final_status == 'Pass') {
                     console.log("nilaibin sama, lanjut proses = " + baris)
                     toogleWarna = baris + 1;
-                    // document.getElementById("cell" + toogleWarna).style.color = "green";
                     document.getElementById("cell" + toogleWarna).style.backgroundColor = "green";
-                    // sern_before = nilai_cellSern;
                     sern_before.push(nilai_cellSern);
 
                     cetakData();
@@ -420,7 +477,6 @@
                     console.log("nilai bin berbeda, atau batterai serial sama harap cek = " + baris)
                     console.log("nilai serial = " + nilai_cellSern)
                     toogleWarna = baris + 1;
-                    // document.getElementById("cell" + toogleWarna).style.color = "red";
                     document.getElementById("cell" + toogleWarna).style.backgroundColor = "red";
                     if (scanCounter == 1) {
                         setTimeout(function() {
@@ -445,6 +501,8 @@
                 // html += "<td class='input_frame_sn'>" + frame_qr_code + "</td>"
                 html += "<td class='input_bin_input'>" + nilai_bin + "</td>"
                 html += "<td class='input_cell_input'>" + cell + "</td>"
+                html += "<td class='input_mv_status'>" + mv_status + "</td>"
+                html += "<td class='input_ir_status'>" + ir_status + "</td>"
                 // html += "<td ><button class='btn btn-danger' data-row='baris" + baris +
                 //     "' id='hapus'></button></td>"
 
@@ -463,6 +521,8 @@
                 // let input_frame_sn = []
                 let input_bin_input = []
                 let input_cell_input = []
+                let input_mv_status = []
+                let input_ir_status = []
 
                 $('.input_cell_sern').each(function() {
                     input_cell_sern.push($(this).text())
@@ -480,6 +540,14 @@
                     input_cell_input.push($(this).text())
                 })
 
+                $('.input_mv_status').each(function() {
+                    input_mv_status.push($(this).text())
+                })
+
+                $('.input_ir_status').each(function() {
+                    input_ir_status.push($(this).text())
+                })
+
                 $.ajax({
                     type: "post",
                     // url: "{{ url('saveFrameData') }}",
@@ -489,6 +557,8 @@
                         frame_sn: frame_qr_code,
                         bin: input_bin_input,
                         cell: input_cell_input,
+                        v_status: input_mv_status,
+                        ir_status: input_ir_status,
                         "_token": "{{ csrf_token() }}"
                     },
                     success: function(res) {

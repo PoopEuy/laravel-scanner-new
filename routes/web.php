@@ -92,3 +92,11 @@ Route::get('/frameScan2', function () {
         "title" => "Frame Scan2"
     ]);
 });
+
+
+Route::get('/frameScan3', function () {
+    return view('frameScan3' ,
+    [
+        "title" => "Frame Scan3"
+    ]);
+});

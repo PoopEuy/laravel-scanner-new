@@ -38,3 +38,8 @@
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
 }
+
+.frame3-widht {
+    flex: 0 0 auto;
+    width: 8.96%;
+}
