@@ -398,6 +398,10 @@
                             nilai_cell = frame_batt.cell;
                             delta_mv = frame_batt.delta_mv;
                             delta_ir = frame_batt.delta_ir;
+
+                            mv_status = frame_batt.v_status;
+                            ir_status = frame_batt.ir_status;
+
                             document.getElementById("currBin").textContent = nilai_bin;
 
                             if (scanCounter == 1) {
@@ -424,26 +428,27 @@
             }
 
             function statusCheck() {
-                if (delta_mv > 17) {
-                    mv_status = 'Fail'
-                } else if (delta_mv >= 13.0) {
-                    mv_status = 'Pass'
-                } else {
-                    mv_status = 'Fail'
-                }
+                //jika status pass/faill perlu di hitung kembali menggunakan rumus ini
+                // if (delta_mv > 17) {
+                //     mv_status = 'Fail'
+                // } else if (delta_mv >= 13.0) {
+                //     mv_status = 'Pass'
+                // } else {
+                //     mv_status = 'Fail'
+                // }
 
-                if (delta_ir > 262.5) {
-                    ir_status = 'Fail'
-                } else if (delta_ir >= 175.0) {
-                    ir_status = 'Pass'
-                } else {
-                    ir_status = 'Fail'
-                }
+                // if (delta_ir > 262.5) {
+                //     ir_status = 'Fail'
+                // } else if (delta_ir >= 175.0) {
+                //     ir_status = 'Pass'
+                // } else {
+                //     ir_status = 'Fail'
+                // }
 
-                if (mv_status == 'Fail' || ir_status == 'Fail') {
-                    final_status = "Fail"
-                } else {
+                if (mv_status == 'Pass' || ir_status == 'Pass') {
                     final_status = "Pass"
+                } else {
+                    final_status = "Fail"
                 }
 
                 binCheck()
@@ -465,7 +470,7 @@
                 console.log("Delta IR = " + ir_status + " " + delta_ir)
                 console.log("FINAL STATUS = " + final_status)
 
-                if (nilai_firstBin == nilai_bin && isInArray == false && nilai_cell == null && nilai_bin !=
+                if (nilai_firstBin == nilai_bin && isInArray == false && nilai_cell == '' && nilai_bin !=
                     undefined && final_status == 'Pass') {
                     console.log("nilaibin sama, lanjut proses = " + baris)
                     toogleWarna = baris + 1;
@@ -479,9 +484,9 @@
                     toogleWarna = baris + 1;
                     document.getElementById("cell" + toogleWarna).style.backgroundColor = "red";
                     if (scanCounter == 1) {
-                        setTimeout(function() {
-                            location.reload();
-                        }, 500);
+                        // setTimeout(function() {
+                        //     location.reload();
+                        // }, 500);
                     } else {
                         console.log("LANJUT")
                     }

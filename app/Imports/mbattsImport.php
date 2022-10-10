@@ -34,6 +34,10 @@ class mbattsImport implements ToModel
         $k_value = $row[7];
         $k_value = $k_value * 730;
 
+        $d_test = '';
+        $cell = '';
+        $frame_sn = '';
+
         return new M_batt([
            'capa_grad' => $row[0],
             'cell_sern' => $row[1],
@@ -47,7 +51,10 @@ class mbattsImport implements ToModel
             'ha' => $row[9],
             'hc' => $row[10],
             't' => $row[11],
-            'bin' => $bin
+            'bin' => $bin,
+            'd_test' => $d_test,
+            'cell' => $cell,
+            'frame_sn' => $frame_sn
 
 
         ]);

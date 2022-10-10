@@ -130,6 +130,9 @@
         var sern_before = new Array();
         let counter;
 
+        const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"];
+        let alpha_array = 0;
+
         $("#batt_qr").keyup(function(event) {
             if (event.keyCode === 13) {
                 $("#cari_batt").click();
@@ -221,26 +224,56 @@
             if (nilai_firstBin == nilai_bin && isInArray == false && nilai_cell == null && nilai_bin !=
                 undefined) {
 
-                if (huruf == 'a') {
-                    input_cell = cell_value + huruf
+                alpha = alphabet[alpha_array];
+                console.log("HURUF ALPHABET = " + alpha);
 
-                    console.log("HURUF1 = " + input_cell)
-                    huruf = 'b'
-
-                    document.getElementById("batt_qr").value = '';
-                    document.getElementById("batt_qr").focus();
-                    // document.getElementById("cell" + input_cell).style.backgroundColor = "green";
-                } else if (huruf == 'b') {
-
-                    input_cell = cell_value + huruf
+                if (alpha == 'p') {
+                    input_cell = cell_value + alpha
                     cell_value = cell_value + 1;
-                    console.log("HURUF2 = " + input_cell)
-                    huruf = 'a'
-
+                    console.log("HURUF alpha = " + input_cell)
+                    alpha_array = 0;
                     document.getElementById("batt_qr").value = '';
                     document.getElementById("batt_qr").focus();
-                    // document.getElementById("cell" + input_cell).style.backgroundColor = "red";
-                } else {}
+
+                } else {
+                    console.log("alpha array1 = " + alpha_array)
+                    input_cell = cell_value + alpha
+                    console.log("HURUF alpha = " + input_cell)
+                    alpha_array = alpha_array + 1;
+                    console.log("alpha array2 = " + alpha_array)
+                    document.getElementById("batt_qr").value = '';
+                    document.getElementById("batt_qr").focus();
+                }
+
+                // if (huruf == 'a') {
+                //     input_cell = cell_value + huruf
+
+                //     console.log("HURUF A = " + input_cell)
+                //     huruf = 'b'
+
+                //     document.getElementById("batt_qr").value = '';
+                //     document.getElementById("batt_qr").focus();
+                //     // document.getElementById("cell" + input_cell).style.backgroundColor = "green";
+                // } else if (huruf == 'b') {
+
+                //     input_cell = cell_value + huruf
+
+                //     console.log("HURUF B = " + input_cell)
+                //     huruf = 'c'
+
+                //     document.getElementById("batt_qr").value = '';
+                //     document.getElementById("batt_qr").focus();
+                //     // document.getElementById("cell" + input_cell).style.backgroundColor = "red";
+                // } else if (huruf == 'c') {
+                //     input_cell = cell_value + huruf
+                //     cell_value = cell_value + 1;
+                //     console.log("HURUF C = " + input_cell)
+                //     huruf = 'd'
+
+                //     document.getElementById("batt_qr").value = '';
+                //     document.getElementById("batt_qr").focus();
+                //     // document.getElementById("cell" + input_cell).style.backgroundColor = "red";
+                // } else {}
 
                 console.log("nilaibin sama, lanjut proses = " + input_cell)
 
@@ -252,12 +285,12 @@
             } else {
                 console.log("nilai bin berbeda, atau batterai serial sama harap cek = " + input_cell)
                 console.log("nilai serial = " + nilai_cellSern)
-
-                input_cell = cell_value + huruf
+                alpha = alphabet[alpha_array];
+                input_cell = cell_value + alpha
                 console.log("INPUT CELL RED = " + input_cell)
                 document.getElementById("cell" + input_cell).style.backgroundColor = "red";
 
-                console.log("HURUF SAAT INI = " + huruf)
+                console.log("HURUF SAAT INI = " + alpha)
                 if (scanCounter == 1) {
                     setTimeout(function() {
                         location.reload();
@@ -277,12 +310,12 @@
             html += "<td>" + baris + "</td>"
             html += "<td class='cell_sern'>" + batt_qr_code + "</td>"
             // html += "<td class='frame_sn'>" + frame_qr_code + "</td>"
-            html += "<td class='input_bin'>" + input_cell + "</td>"
+            html += "<td class='input_bin'>" + nilai_bin + "</td>"
             html += "<td class='input_cell'>" + input_cell + "</td>"
 
             $('#table1').append(html)
 
-            if (counter == 30) {
+            if (counter == 224) {
                 // autoSave();
                 document.getElementById("frame_qr").focus();
                 document.getElementById("frame_qr").value = '';

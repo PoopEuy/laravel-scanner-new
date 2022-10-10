@@ -14,8 +14,8 @@
             <th>V_gr</th>
             <th>Delta mV</th>
             <th>V_Status</th>
-
-            <th>Update</th>
+            <th>Frame</th>
+            <th>D Test</th>
         </tr>
     </thead>
 
@@ -61,9 +61,11 @@
                 <td>
                     {{ $item->v_status }}
                 </td>
-
                 <td>
-                    {{ $item->updated_at }}
+                    {{ $item->frame_sn }}
+                </td>
+                <td>
+                    {{ $item->d_test }}
                 </td>
             </tr>
         @endforeach

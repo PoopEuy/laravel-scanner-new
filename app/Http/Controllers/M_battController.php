@@ -13,10 +13,27 @@ use PhpOffice\PhpSpreadsheet\Helper\Sample;
 
 class M_battController extends Controller
 {
-   public function batt_show(){
+   public function batt_show(Request $request){
+
+    $keyword1 = $request->keyword1;
+    $keyword2 = $request->keyword2;
+
+        if ($keyword1 != '') {
+            // echo 'keyword1 tidak kosong';
+            $data_batt = M_batt::where('cell_sern', 'LIKE', '%' .$keyword1.'%')->latest('d_test')->distinct()->paginate(20);
+        } elseif($keyword2 != '') {
+            // echo 'keyword2 tidak kosong';
+            $data_batt = M_batt::where('bin', 'LIKE', '%' .$keyword2.'%')->latest('d_test')->distinct()->paginate(20);
+
+        }else{
+            $data_batt = DB::table('m_batts')->latest('d_test')->distinct()->paginate(20);
+        }
+
+
         // $data_batt = M_batt::orderBy('updated_at', 'DESC')->paginate(15);
-        $data_batt = DB::table('m_batts')->latest('updated_at')->distinct()->paginate(20);
+        // $data_batt = DB::table('m_batts')->latest('updated_at')->distinct()->paginate(20);
         // dd($data_batt);
+        $data_batt->appends($request->all());
         return view('tabel_batt',["title" => "DataBatt", "data_batt" => $data_batt]);
     }
 
