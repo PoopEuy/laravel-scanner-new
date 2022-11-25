@@ -7,7 +7,7 @@
         <div id="frame1_simbol">
             <div class="row" style="display: block">
                 <div class="form-group col-md-12">
-                    <h1 class="display-1" style="text-align: center;">Frame Model</h1>
+                    <h1 class="display-1" style="text-align: center;">Frame Model_bp</h1>
                 </div>
             </div>
 
@@ -471,7 +471,7 @@
                 console.log("FINAL STATUS = " + final_status)
 
                 if (nilai_firstBin == nilai_bin && isInArray == false && nilai_cell == '' && nilai_bin !=
-                    undefined && final_status == 'Pass') {
+                    undefined) {
                     console.log("nilaibin sama, lanjut proses = " + baris)
                     toogleWarna = baris + 1;
                     document.getElementById("cell" + toogleWarna).style.backgroundColor = "green";

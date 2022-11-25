@@ -89,4 +89,9 @@
             </div>
         </div>
     </div>
+    <script>
+        window.onload = function() {
+            document.getElementById("keyword1").focus();
+        };
+    </script>
 @endsection

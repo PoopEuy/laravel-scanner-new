@@ -100,3 +100,11 @@ Route::get('/frameScan3', function () {
         "title" => "Frame Scan3"
     ]);
 });
+
+
+Route::get('/frameScan_bp', function () {
+    return view('frameScan_bp' ,
+    [
+        "title" => "Frame Scan_bp"
+    ]);
+});
