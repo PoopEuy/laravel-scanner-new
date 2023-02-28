@@ -18,7 +18,7 @@ class mbattsExport implements FromCollection, WithHeadings
         // return M_batt::all();
         // return DB::table('m_batts')->where('ir_gr', '!=', null )->where('v_gr', '!=', null )->get();
         return DB::table('m_batts')
-            ->select('cell_sern', 'capa_grad', 'crtn_sern', 'm', 'c_po', 'v_po', 'ir_po', 'k', 'w', 'ha', 'hc', 't', 'bin', 'v_gr', 'delta_mv', 'v_average', 'v_status', 'ir_gr', 'delta_ir', 'ir_average','ir_status','d_test')
+            ->select('cell_sern', 'capa_grad', 'crtn_sern', 'm', 'c_po', 'v_po', 'ir_po', 'k', 'w', 'ha', 'hc', 't', 'bin', 'v_gr', 'delta_mv', 'v_average', 'v_status', 'ir_gr', 'delta_ir', 'ir_average','ir_status','frame_sn','d_test')
             ->where('ir_gr', '!=', null )
             ->where('v_gr', '!=', null )
             ->get();
@@ -47,6 +47,7 @@ class mbattsExport implements FromCollection, WithHeadings
             'delta_ir',
             'delta ir Average',
             'IR_Status',
+            'frame_sn',
             'D_Test'
 
          ];
