@@ -13,10 +13,11 @@ use PhpOffice\PhpSpreadsheet\Helper\Sample;
 
 class M_battController extends Controller
 {
-   public function batt_show(Request $request){
+    public function batt_show(Request $request){
 
-    $keyword1 = $request->keyword1;
-    $keyword2 = $request->keyword2;
+        $keyword1 = $request->keyword1;
+        $keyword2 = $request->keyword2;
+        $keyword3 = $request->keyword3;
 
         if ($keyword1 != '') {
             // echo 'keyword1 tidak kosong';
@@ -25,7 +26,12 @@ class M_battController extends Controller
             // echo 'keyword2 tidak kosong';
             $data_batt = M_batt::where('bin', 'LIKE', '%' .$keyword2.'%')->latest('d_test')->distinct()->paginate(20);
 
-        }else{
+        } elseif($keyword3 != '') {
+            // echo 'keyword2 tidak kosong';
+            $data_batt = M_batt::where('frame_sn', 'LIKE', '%' .$keyword3.'%')->latest('d_test')->distinct()->paginate(20);
+
+        }
+        else{
             $data_batt = DB::table('m_batts')->latest('d_test')->distinct()->paginate(20);
         }
 
@@ -157,10 +163,11 @@ class M_battController extends Controller
 
     public function m_battimportexcel(Request $request){
         $file = $request->file('file');
+        $mbattsImport = new mbattsImport($request->po_name, $request->batch,);
         $namaFile = $file->getClientOriginalName();
         $file->move('DataExcel', $namaFile);
 
-        Excel::import(new mbattsImport, public_path('/DataExcel/'.$namaFile));
+        Excel::import($mbattsImport, public_path('/DataExcel/'.$namaFile));
         return redirect('/batt_show');
 
     }

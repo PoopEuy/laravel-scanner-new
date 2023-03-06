@@ -1,0 +1,11 @@
+jika mengalami masalah pada migration membutuhkan doctrine/dbal dan terdapat beberapa problem beriku : 
+
+Problem 1
+    - phpoffice/phpspreadsheet 1.24.1 requires ext-gd * -> it is missing from your system. Install or enable PHP's gd extension.
+    - maatwebsite/excel 3.1.40 requires phpoffice/phpspreadsheet ^1.18 -> satisfiable by phpoffice/phpspreadsheet[1.24.1].
+    - maatwebsite/excel is locked to version 3.1.40 and an update of this package was not requested.
+
+solusi :
+
+- cari ;extension=php_gd2.dll apda php.ini ubah menjadi extension=php_gd2.dll
+- install  composer require doctrine/dbal:3.6.1

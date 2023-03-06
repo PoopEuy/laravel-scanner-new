@@ -12,15 +12,55 @@ class mbattsImport implements ToModel
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+
+    protected $po_name;
+    protected $batch;
+    function __construct($po_name, $batch) {
+        $this->po_name = $po_name;
+        $this->batch = $batch;
+    }
+
+
     public function model(array $row)
     {
         $bin_data = $row[4];
-        if($bin_data >= 299.001){
+        //batterai type PO 3003
+        // if($bin_data >= 299.001){
+        // $bin = 1;
+        // }else if($bin_data >= 298.001){
+        // $bin = 2;
+        // }else if($bin_data >= 297.001){
+        // $bin = 3;
+        // }
+        
+        //batterai type foxes PO 280Ah
+        if($bin_data >= 298.001){
         $bin = 1;
-        }else if($bin_data >= 298.001){
+        }else if($bin_data >= 296.001){
         $bin = 2;
-        }else if($bin_data >= 297.001){
+        }else if($bin_data >= 294.001){
         $bin = 3;
+        }
+        else if($bin_data >= 292.001){
+        $bin = 4;
+        }
+        else if($bin_data >= 290.001){
+        $bin = 5;
+        }
+        else if($bin_data >= 288.001){
+        $bin = 6;
+        }
+        else if($bin_data >= 286.001){
+        $bin = 7;
+        }
+        else if($bin_data >= 284.001){
+        $bin = 8;
+        }
+        else if($bin_data >= 282.001){
+        $bin = 9;
+        }
+        else if($bin_data >= 280.001){
+        $bin = 10;
         }
 
         $v_po = $row[5];
@@ -54,7 +94,9 @@ class mbattsImport implements ToModel
             'bin' => $bin,
             'd_test' => $d_test,
             'cell' => $cell,
-            'frame_sn' => $frame_sn
+            'frame_sn' => $frame_sn,
+            'po' => $this->po_name,
+            'batch' => $this->batch
 
 
         ]);
