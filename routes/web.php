@@ -6,8 +6,8 @@ use App\Http\Controllers\PostController;
 
 use App\Http\Controllers\ScanController;
 use App\Http\Controllers\M_battController;
-
-
+use App\Http\Controllers\M_typeController;
+use App\Http\Controllers\M_binController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -106,5 +106,28 @@ Route::get('/frameScan_bp', function () {
     return view('frameScan_bp' ,
     [
         "title" => "Frame Scan_bp"
+    ]);
+});
+
+Route::get('/importDataPage', [M_typeController::class, 'importDataPage']);
+Route::get('/get_po_type', [M_typeController::class, 'get_po_type']);
+Route::post('/createMtype', [M_typeController::class, 'createMtype']);
+
+Route::get('/getBinByPo', [M_binController::class, 'getBinByPo']);
+Route::get('/getBinMaster', [M_binController::class, 'getBinMaster']);
+Route::post('/createMbin', [M_binController::class, 'createMbin']);
+
+// Route::get('/binSetting', function () {
+//     return view('binSetting' ,
+//     [
+//         "title" => "binSetting"
+//     ]);
+// });
+Route::get('/binSetting', [M_typeController::class, 'selectType']);
+
+Route::get('/typeSetting', function () {
+    return view('typeSetting' ,
+    [
+        "title" => "typeSetting"
     ]);
 });

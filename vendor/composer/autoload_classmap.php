@@ -11,6 +11,7 @@ return array(
     'App\\Exports\\mbattsExport' => $baseDir . '/app/Exports/mbattsExport.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\M_battController' => $baseDir . '/app/Http/Controllers/M_battController.php',
+    'App\\Http\\Controllers\\M_typeController' => $baseDir . '/app/Http/Controllers/M_typeController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

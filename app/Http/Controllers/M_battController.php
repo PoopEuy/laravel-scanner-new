@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\M_batt;
+use App\Models\M_bin;
 use Illuminate\Support\Facades\DB;
 use App\Exports\mbattsExport;
 use App\Imports\mbattsImport;
@@ -161,9 +162,25 @@ class M_battController extends Controller
         return view('voltageUpdate',["title" => "V&IR Update", "voltage" => $voltageUpdate]);
     }
 
+    //import now
+    // public function m_battimportexcel(Request $request){
+    //     $file = $request->file('file');
+    //     $mbattsImport = new mbattsImport($request->po_name, $request->batch,);
+    //     $namaFile = $file->getClientOriginalName();
+    //     $file->move('DataExcel', $namaFile);
+
+    //     Excel::import($mbattsImport, public_path('/DataExcel/'.$namaFile));
+    //     return redirect('/batt_show');
+
+    // }
+
     public function m_battimportexcel(Request $request){
+        $po_name = $request->input('po_name');
         $file = $request->file('file');
-        $mbattsImport = new mbattsImport($request->po_name, $request->batch,);
+        $bin_filter = M_bin::where('po', $po_name)->orderBy('bin', 'ASC')->get(['bin','bin_param']);
+        
+        // echo $bin_filter;
+        $mbattsImport = new mbattsImport($request->po_name, $request->batch, $bin_filter);
         $namaFile = $file->getClientOriginalName();
         $file->move('DataExcel', $namaFile);
 

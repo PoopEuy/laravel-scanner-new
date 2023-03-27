@@ -23,13 +23,22 @@
                 <li class="nav-item">
                     <a class="nav-link {{ $title === 'DataBatt' ? 'active' : '' }}" href="/batt_show">DataBatt</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link {{ $title === 'Find BINQR' ? 'active' : '' }}" href="/searchBinPage">Find
                         BINQR</a>
-                </li>
-                <li class="nav-item">
+                </li> -->
+                <!-- <li class="nav-item">
                     <a class="nav-link {{ $title === 'V&IR Update' ? 'active' : '' }}" href="/voltageUpdate">V&IR
                         Update</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link {{ $title === 'Import Data' ? 'active' : '' }}" href="/importDataPage">Import Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $title === 'BIN Setting' ? 'active' : '' }}" href="/binSetting">BIN Setting</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $title === 'Type Setting' ? 'active' : '' }}" href="/typeSetting">Type Setting</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ $title === 'Frame Scan' ? 'active' : '' }}" href="/frameScan">Frame Scan</a>

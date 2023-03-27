@@ -12,56 +12,68 @@ class mbattsImport implements ToModel
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-
+    
+    
     protected $po_name;
     protected $batch;
-    function __construct($po_name, $batch) {
+    protected $bin_filter;
+
+    function __construct($po_name, $batch, $bin_filter) {
         $this->po_name = $po_name;
         $this->batch = $batch;
-    }
+        $this->bin_filter = $bin_filter;
 
+        // echo $po_name;
+        // echo '<br>';
+        // echo $batch;
+        // echo '<br>';
+        // echo '<br>';
+        // echo $bin_filter;
+        // echo '<br>';
+        // echo '<br>';
+
+        $arr_bin=array();
+        $arr_param=array();
+
+        foreach ($bin_filter as $value) {
+            
+            $bin_val = $value->bin;            
+            array_push($arr_bin,$bin_val);
+
+            $param_val = $value->bin_param;            
+            array_push($arr_param,$param_val);
+            // echo ' array : <br>';
+            // echo $arr_binrr_bin;
+        }
+
+        $this->arr_bin = $arr_bin;
+        $this->arr_param = $arr_param;
+
+    }
 
     public function model(array $row)
     {
         $bin_data = $row[4];
-        //batterai type PO 3003
-        // if($bin_data >= 299.001){
-        // $bin = 1;
-        // }else if($bin_data >= 298.001){
-        // $bin = 2;
-        // }else if($bin_data >= 297.001){
-        // $bin = 3;
-        // }
-        
-        //batterai type foxes PO 280Ah
-        if($bin_data >= 298.001){
-        $bin = 1;
-        }else if($bin_data >= 296.001){
-        $bin = 2;
-        }else if($bin_data >= 294.001){
-        $bin = 3;
+        $arr_bin = $this->arr_bin;
+        $arr_param = $this->arr_param;
+
+        $arr_bin_length = count($arr_bin);
+        // print_r($bin_data);
+        // echo '<br>';
+
+        $cari_bin = true;
+        for ($x = 0; $x <  $arr_bin_length && $cari_bin == true; $x++) {
+         
+                $nilai_bin = $arr_bin[$x]; 
+                $nilai_param = $arr_param[$x]; 
+            //  echo "The number is: $x, bin = $nilai_bin, param = $nilai_param <br>";
+                if ($bin_data > $nilai_param) {
+                    $bin = $nilai_bin;   
+                    $cari_bin = false;
+                }        
         }
-        else if($bin_data >= 292.001){
-        $bin = 4;
-        }
-        else if($bin_data >= 290.001){
-        $bin = 5;
-        }
-        else if($bin_data >= 288.001){
-        $bin = 6;
-        }
-        else if($bin_data >= 286.001){
-        $bin = 7;
-        }
-        else if($bin_data >= 284.001){
-        $bin = 8;
-        }
-        else if($bin_data >= 282.001){
-        $bin = 9;
-        }
-        else if($bin_data >= 280.001){
-        $bin = 10;
-        }
+        // echo "hasil bin adalah : $bin" ;
+        // echo '<br>';
 
         $v_po = $row[5];
         $v_po = $v_po * 1000;
@@ -77,7 +89,7 @@ class mbattsImport implements ToModel
         $d_test = '';
         $cell = '';
         $frame_sn = '';
-
+        
         return new M_batt([
            'capa_grad' => $row[0],
             'cell_sern' => $row[1],

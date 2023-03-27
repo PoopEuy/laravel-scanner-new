@@ -7,7 +7,7 @@
         <div class="card card-info card-outline">
             <div class="card-header">
                 <a href="{{ url('/m_battsexport') }}" class="btn btn-success">Export</a>
-                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Import</a>
+                <!-- <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Import</a> -->
                 <form action="/batt_show" method="GET">
                     <div class="row col col-lg-12">
                         <div class="search-batt row col col-lg-4 align-items-center">

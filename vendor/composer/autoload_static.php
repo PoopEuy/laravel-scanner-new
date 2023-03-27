@@ -587,6 +587,7 @@ class ComposerStaticInit18ac5f2cdbd87adc866cdab4a931a990
         'App\\Exports\\mbattsExport' => __DIR__ . '/../..' . '/app/Exports/mbattsExport.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\M_battController' => __DIR__ . '/../..' . '/app/Http/Controllers/M_battController.php',
+        'App\\Http\\Controllers\\M_typeController' => __DIR__ . '/../..' . '/app/Http/Controllers/M_typeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
