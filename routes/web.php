@@ -85,6 +85,7 @@ Route::get('/frameScan', function () {
 });
 Route::get('/getBattData/{batt_qr_code}', [M_battController::class, 'getBattData']);
 Route::get('/getFrameData/{frameValue}', [M_battController::class, 'getFrameData']);
+Route::post('/getBattByPo', [M_battController::class, 'getBattByPo']);
 
 Route::get('/frameScan2', function () {
     return view('frameScan2' ,
@@ -124,7 +125,7 @@ Route::post('/createMbin', [M_binController::class, 'createMbin']);
 //     ]);
 // });
 Route::get('/binSetting', [M_typeController::class, 'selectType']);
-
+Route::get('/battInfo', [M_typeController::class, 'battInfo']);
 Route::get('/typeSetting', function () {
     return view('typeSetting' ,
     [

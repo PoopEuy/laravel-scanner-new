@@ -19,7 +19,14 @@ class M_typeController extends Controller
 
         $data_mtype = M_type::distinct('type_batt')->get();
 
-        return view('binSetting',["title" => "ImportPage", "data_mtype" => $data_mtype]);
+        return view('binSetting',["title" => "binSetting", "data_mtype" => $data_mtype]);
+    }
+
+    public function battInfo(Request $request){
+
+        $data_mtype = M_type::distinct('type_batt')->get();
+
+        return view('battInfo',["title" => "battInfo", "data_mtype" => $data_mtype]);
     }
 
     public function get_po_type(Request $request){

@@ -239,15 +239,29 @@ class M_battController extends Controller
             if($i == $counter-1){
                return response()->json('success', 200);
             }
-
-
         }
 
+    }
 
-
-
-
-
+    public function getBattByPo(Request $request){
+        $po = $request->po_value;   
+        $total_batt = M_batt::where('po', $po)->count();
+        $belum_frame = M_batt::where([
+            ['po', '=', $po],
+            ['frame_sn', '=', ''],
+            ])->count();
+        $sudah_frame = M_batt::where([
+            ['po', '=', $po],
+            ['frame_sn', '<>', ''],
+            ])->count();
+        $ir_max = M_batt::where('po', $po)->max('ir_gr');
+        $ir_min = M_batt::where('po', $po)->min('ir_gr');
+        $v_max = M_batt::where('po', $po)->max('v_gr');
+        $v_min = M_batt::where('po', $po)->min('v_gr');
+        //  dd($data_batt);
+        //  echo $data_batt ;
+        return response()->json(['total_batt' => $total_batt, 'belum_frame' => $belum_frame, 'sudah_frame' => $sudah_frame, 'ir_max' => $ir_max, 'ir_min' => $ir_min, 'v_max' => $v_max, 'v_min' => $v_min]);
+        
 
     }
 
