@@ -102,6 +102,27 @@ Route::get('/frameScan3', function () {
     ]);
 });
 
+Route::get('/frameScan4', function () {
+    return view('frameScan4' ,
+    [
+        "title" => "Frame Scan4"
+    ]);
+});
+
+Route::get('/frameScan5', function () {
+    return view('frameScan5' ,
+    [
+        "title" => "Frame Scan5"
+    ]);
+});
+
+Route::get('/frameScan6', function () {
+    return view('frameScan6' ,
+    [
+        "title" => "Frame Scan6"
+    ]);
+});
+
 
 Route::get('/frameScan_bp', function () {
     return view('frameScan_bp' ,

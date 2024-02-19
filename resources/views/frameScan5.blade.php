@@ -8,7 +8,7 @@
             <div class="row" style="display: block">
                 <div class="form-group col-md-12">
                     <h1 class="display-1" style="text-align: center;">Frame Model</h1>
-                    <h5 class="display-6" style="text-align: center;">Talis 30</h5>
+                    <h5 class="display-6" style="text-align: center;">Talis 7</h5>
                 </div>
             </div>
 
@@ -92,117 +92,132 @@
                     </div>
                 </div>
             </div> --}}
-
-            <div class="row">
-                @for ($i = 4; $i > 0; $i--)
+            <div class="row d-flex justify-content-center" id="cellContent">
+                <div class="row justify-content-center">
                     <div class="form-group col-md-3">
                         <div class="kotak-kotak">
-                            <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black"
-                                id={{ "cell$i " }} style="background-color: black">
-                                <span style="font-size:30px;color:white;"><i class="fa fa-caret-left"></i>
-                                    {{ "C$i " }} </span>
+                            <div class="ssb-icon" id={{ "cellKosong " }} style="background-color: black" id={{ "plate " }} 
+                            style="background-color: black">
+                                <span style="font-size:30px;color:white;"><i class=""></i>
+                                        {{ "Plate" }} </span>
                             </div>
                         </div>
                     </div>
-                @endfor
-            </div>
-
-            <div class="row">
-                @for ($i = 5; $i < 9; $i++)
-                    <div class="form-group col-md-3">
-                        <div class="kotak-kotak">
-                            <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black">
-                                <span id={{ "cell$i " }} style="font-size:30px;color:white">
-                                    {{ "C$i " }} <i class="fa fa-caret-right"></i></span>
+                    @for ($i = 1; $i < 3; $i++)
+                        <div class="form-group col-md-3">
+                            <div class="kotak-kotak">
+                                <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black"
+                                    id={{ "cell$i " }} style="background-color: black">
+                                    <span style="font-size:30px;color:white;"><i class="fa fa-caret-right"></i>
+                                        {{ "C$i " }} </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endfor
-            </div>
-
-            <div class="row">
-                @for ($i = 12; $i > 8; $i--)
-                    <div class="form-group col-md-3">
-                        <div class="kotak-kotak">
-                            <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black">
-                                <span id={{ "cell$i " }} style="font-size:30px;color:white">
-                                    <i class="fa fa-caret-left"></i> {{ "C$i " }}
-                                </span>
+                    @endfor
+                </div>
+                
+                <div class="row justify-content-center">
+                    @for ($i = 5; $i > 2; $i--)
+                        <div class="form-group col-md-3">
+                            <div class="kotak-kotak">
+                                <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black">
+                                    <span id={{ "cell$i " }} style="font-size:30px;color:white">
+                                        {{ "C$i " }} <i class="fa fa-caret-left"> </i>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endfor
-            </div>
+                    @endfor
+                </div>
 
-            <div class="row">
-                @for ($i = 13; $i < 17; $i++)
-                    <div class="form-group col-md-3">
-                        <div class="kotak-kotak">
-                            <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black">
-                                <span id={{ "cell$i " }} style="font-size:30px;color:white">
-                                    {{ "C$i " }} <i class="fa fa-caret-right"></i>
-                                </span>
+                <div class="row justify-content-center">
+                    @for ($i = 6; $i < 9; $i++)
+                        <div class="form-group col-md-3">
+                            <div class="kotak-kotak">
+                                <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black">
+                                    <span id={{ "cell$i " }} style="font-size:30px;color:white">
+                                        {{ "C$i " }} <i class="fa fa-caret-right"> </i>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endfor
-            </div>
+                    @endfor
+                </div>
 
-            <div class="row">
-                @for ($i = 20; $i > 16; $i--)
-                    <div class="form-group col-md-3">
-                        <div class="kotak-kotak">
-                            <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black">
-                                <span id={{ "cell$i " }} style="font-size:30px;color:white">
-                                    <i class="fa fa-caret-left"> {{ "C$i " }} </i>
-                                </span>
+                <div class="row justify-content-center">
+                    @for ($i = 11; $i > 8; $i--)
+                        <div class="form-group col-md-3">
+                            <div class="kotak-kotak">
+                                <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black">
+                                    <span id={{ "cell$i " }} style="font-size:30px;color:white">
+                                        {{ "C$i " }} <i class="fa fa-caret-left"> </i>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endfor
-            </div>
+                    @endfor
+                </div>
 
-            <div class="row">
-                @for ($i = 21; $i < 25; $i++)
-                    <div class="form-group col-md-3">
-                        <div class="kotak-kotak">
-                            <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black">
-                                <span id={{ "cell$i " }} style="font-size:30px;color:white">
-                                    {{ "C$i " }} <i class="fa fa-caret-right"> </i>
-                                </span>
+                <div class="row justify-content-center">
+                    @for ($i = 12; $i < 15; $i++)
+                        <div class="form-group col-md-3">
+                            <div class="kotak-kotak">
+                                <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black">
+                                    <span id={{ "cell$i " }} style="font-size:30px;color:white">
+                                        {{ "C$i " }} <i class="fa fa-caret-right"> </i>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endfor
-            </div>
+                    @endfor
+                </div>
 
-            <div class="row">
-                @for ($i = 28; $i > 24; $i--)
-                    <div class="form-group col-md-3">
-                        <div class="kotak-kotak">
-                            <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black">
-                                <span id={{ "cell$i " }} style="font-size:30px;color:white">
-                                    <i class="fa fa-caret-left"> {{ "C$i " }} </i>
-                                </span>
+                <div class="row justify-content-center">
+                    @for ($i = 17; $i > 14; $i--)
+                        <div class="form-group col-md-3">
+                            <div class="kotak-kotak">
+                                <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black">
+                                    <span id={{ "cell$i " }} style="font-size:30px;color:white">
+                                        {{ "C$i " }} <i class="fa fa-caret-left"> </i>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endfor
-            </div>
+                    @endfor
+                </div>
 
-            <div class="row">
-                @for ($i = 29; $i < 33; $i++)
-                    <div class="form-group col-md-3">
-                        <div class="kotak-kotak">
-                            <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black">
-                                <span id={{ "cell$i " }} style="font-size:30px;color:white">
-                                    {{ "C$i " }} <i class="fa fa-caret-right"> </i>
-                                </span>
+                <div class="row justify-content-center">
+                    @for ($i = 18; $i < 21; $i++)
+                        <div class="form-group col-md-3">
+                            <div class="kotak-kotak">
+                                <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black">
+                                    <span id={{ "cell$i " }} style="font-size:30px;color:white">
+                                        {{ "C$i " }} <i class="fa fa-caret-right"> </i>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endfor
+                    @endfor
+                </div>
+
+                 <div class="row justify-content-center">
+                    @for ($i = 23; $i > 20; $i--)
+                        <div class="form-group col-md-3">
+                            <div class="kotak-kotak">
+                                <div class="ssb-icon" id={{ "cell$i " }} style="background-color: black">
+                                    <span id={{ "cell$i " }} style="font-size:30px;color:white">
+                                        {{ "C$i " }} <i class="fa fa-caret-left"> </i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+
+                
             </div>
+
+           
 
             {{-- <button type="submit" id="submit" class="btn btn-primary">Search</button> --}}
         </div>
@@ -358,7 +373,7 @@
                         console.log("frameData2 = " + frameData2);
                         //jika frame scan bukan kode beterai, maka update data
                         if (frameData2 == undefined) {
-                            if (counter == 32) {
+                            if (counter == 23) {
                                 autoSave();
                                 console.log("LANJUT UPDATE")
 
@@ -514,7 +529,7 @@
 
                 $('#table1').append(html)
 
-                if (counter == 32) {
+                if (counter == 23) {
                     // autoSave();
                     document.getElementById("frame_qr").focus();
                     document.getElementById("frame_qr").value = '';

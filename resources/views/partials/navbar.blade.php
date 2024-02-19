@@ -41,9 +41,27 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link {{ $title === 'Frame Scan' ? 'active' : '' }}" href="/frameScan">Frame Scan</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                       Frame Scan
+                    </a>
+                    <ul class="dropdown-menu dropdown-warna" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li class="nav-item">
+                            <a class="nav-link {{ $title === 'ImportPage' ? 'active' : '' }}" href="/frameScan">Talis 30</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ $title === 'binSetting' ? 'active' : '' }}" href="/frameScan4">Talis 5</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ $title === 'binSetting' ? 'active' : '' }}" href="/frameScan5">Talis 7</a>
+                        </li>
+                      
+                    </ul>
                 </li>
+
+                {{-- <li class="nav-item">
+                    <a class="nav-link {{ $title === 'Frame Scan' ? 'active' : '' }}" href="/frameScan">Frame Scan</a>
+                </li> --}}
 
                 <!-- <li class="nav-item">
                     <a class="nav-link {{ $title === 'ImportPage' ? 'active' : '' }}" href="/importDataPage">Import Data</a>
