@@ -8,6 +8,7 @@ use App\Http\Controllers\ScanController;
 use App\Http\Controllers\M_battController;
 use App\Http\Controllers\M_typeController;
 use App\Http\Controllers\M_binController;
+use App\Http\Controllers\T_FrameController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,7 +81,7 @@ Route::get('/input_test', function () {
 Route::get('/frameScan', function () {
     return view('frameScan' ,
     [
-        "title" => "Frame Scan"
+        "title" => "FRAME TALIS 30"
     ]);
 });
 Route::get('/getBattData/{batt_qr_code}', [M_battController::class, 'getBattData']);
@@ -105,14 +106,21 @@ Route::get('/frameScan3', function () {
 Route::get('/frameScan4', function () {
     return view('frameScan4' ,
     [
-        "title" => "Frame Scan4"
+        "title" => "FRAME TALIS 5"
+    ]);
+});
+
+Route::get('/frameScan4v2', function () {
+    return view('frameScan4V2' ,
+    [
+        "title" => "FRAME TALIS 5"
     ]);
 });
 
 Route::get('/frameScan5', function () {
     return view('frameScan5' ,
     [
-        "title" => "Frame Scan5"
+        "title" => "FRAME TALIS 7"
     ]);
 });
 
@@ -153,3 +161,13 @@ Route::get('/typeSetting', function () {
         "title" => "typeSetting"
     ]);
 });
+
+//T_Frame
+Route::get('/getFrameList', [T_FrameController::class, 'getFrame']);
+Route::get('/getFramesBySN/{frame_sn}', [T_FrameController::class, 'getFramesBySN']);
+Route::post('/createFrame', [T_FrameController::class, 'createFrame']);
+Route::post('/createBulkFrame', [T_FrameController::class, 'createBulkFrame']);
+
+
+
+

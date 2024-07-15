@@ -47,13 +47,16 @@
                     </a>
                     <ul class="dropdown-menu dropdown-warna" aria-labelledby="navbarDarkDropdownMenuLink">
                         <li class="nav-item">
-                            <a class="nav-link {{ $title === 'ImportPage' ? 'active' : '' }}" href="/frameScan">Talis 30</a>
+                            <a class="nav-link {{ $title === 'FRAME TALIS 30' ? 'active' : '' }}" href="/frameScan">Talis 30</a>
+                        </li>
+                        {{-- <li class="nav-item">
+                            <a class="nav-link {{ $title === 'Talis5' ? 'active' : '' }}" href="/frameScan4">Talis 5</a>
+                        </li> --}}
+                        <li class="nav-item">
+                            <a class="nav-link {{ $title === 'FRAME TALIS 5' ? 'active' : '' }}" href="/frameScan4v2">Talis 5</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ $title === 'binSetting' ? 'active' : '' }}" href="/frameScan4">Talis 5</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ $title === 'binSetting' ? 'active' : '' }}" href="/frameScan5">Talis 7</a>
+                            <a class="nav-link {{ $title === 'FRAME TALIS 7' ? 'active' : '' }}" href="/frameScan5">Talis 7</a>
                         </li>
                       
                     </ul>

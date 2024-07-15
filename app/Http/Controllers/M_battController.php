@@ -14,7 +14,8 @@ use PhpOffice\PhpSpreadsheet\Helper\Sample;
 
 class M_battController extends Controller
 {
-    public function batt_show(Request $request){
+    public function batt_show(Request $request)
+    {
 
         $keyword1 = $request->keyword1;
         $keyword2 = $request->keyword2;
@@ -22,17 +23,16 @@ class M_battController extends Controller
 
         if ($keyword1 != '') {
             // echo 'keyword1 tidak kosong';
-            $data_batt = M_batt::where('cell_sern', 'LIKE', '%' .$keyword1.'%')->latest('d_test')->distinct()->paginate(20);
-        } elseif($keyword2 != '') {
+            $data_batt = M_batt::where('cell_sern', 'LIKE', '%' . $keyword1 . '%')->latest('d_test')->distinct()->paginate(20);
+        } elseif ($keyword2 != '') {
             // echo 'keyword2 tidak kosong';
-            $data_batt = M_batt::where('bin', 'LIKE', '%' .$keyword2.'%')->latest('d_test')->distinct()->paginate(20);
+            $data_batt = M_batt::where('bin', 'LIKE', '%' . $keyword2 . '%')->latest('d_test')->distinct()->paginate(20);
 
-        } elseif($keyword3 != '') {
+        } elseif ($keyword3 != '') {
             // echo 'keyword2 tidak kosong';
-            $data_batt = M_batt::where('frame_sn', 'LIKE', '%' .$keyword3.'%')->latest('d_test')->distinct()->paginate(20);
+            $data_batt = M_batt::where('frame_sn', 'LIKE', '%' . $keyword3 . '%')->latest('d_test')->distinct()->paginate(20);
 
-        }
-        else{
+        } else {
             $data_batt = DB::table('m_batts')->latest('d_test')->distinct()->paginate(20);
         }
 
@@ -41,57 +41,67 @@ class M_battController extends Controller
         // $data_batt = DB::table('m_batts')->latest('updated_at')->distinct()->paginate(20);
         // dd($data_batt);
         $data_batt->appends($request->all());
-        return view('tabel_batt',["title" => "DataBatt", "data_batt" => $data_batt]);
+        return view('tabel_batt', ["title" => "DataBatt", "data_batt" => $data_batt]);
     }
 
-    public function scan_now($cell_sern_scan, $v_gr_scan, $ir_gr_scan){
+    public function scan_now($cell_sern_scan, $v_gr_scan, $ir_gr_scan)
+    {
         $scan = M_batt::where('cell_sern', $cell_sern_scan)->first();
 
         if (!empty($scan)) {
-            return view('scan',
-            [
-                "title" => "Scan",
-                "cell_sern_scan" => $cell_sern_scan,
-                "v_gr_scan" => $v_gr_scan,
-                "ir_gr_scan" => $ir_gr_scan,
-                "scan" => $scan
-            ]);
-        }else{
+            return view(
+                'scan',
+                [
+                    "title" => "Scan",
+                    "cell_sern_scan" => $cell_sern_scan,
+                    "v_gr_scan" => $v_gr_scan,
+                    "ir_gr_scan" => $ir_gr_scan,
+                    "scan" => $scan
+                ]
+            );
+        } else {
 
-            return view('/empty_qrcode',["title" => "EmptyQRCode"]);
+            return view('/empty_qrcode', ["title" => "EmptyQRCode"]);
         }
 
     }
 
-    public function findQrCode(Request $request){
+    public function findQrCode(Request $request)
+    {
         $scan_qr = $request->input('scan_qr');
         // echo $scan_qr;
         $scan = M_batt::where('cell_sern', $scan_qr)->first();
         if (!empty($scan)) {
-            return view('dataBin',
-            [
-                "title" => "Scan",
-                "scan" => $scan
-            ]);
-        }else{
+            return view(
+                'dataBin',
+                [
+                    "title" => "Scan",
+                    "scan" => $scan
+                ]
+            );
+        } else {
 
-            return view('/empty_qrcode',["title" => "EmptyQRCode"]);
+            return view('/empty_qrcode', ["title" => "EmptyQRCode"]);
         }
 
     }
 
-    public function scanIrVolt($v_gr_scan, $ir_gr_scan){
-        return view('scanIrVolt',
+    public function scanIrVolt($v_gr_scan, $ir_gr_scan)
+    {
+        return view(
+            'scanIrVolt',
             [
                 "title" => "scanIrVolt",
                 "v_gr_scan" => $v_gr_scan,
                 "ir_gr_scan" => $ir_gr_scan
 
-            ]);
+            ]
+        );
 
     }
 
-    public function vendorVoltIr(Request $request){
+    public function vendorVoltIr(Request $request)
+    {
 
         $cell_sern_scan = $request->input('cell_sern_scan');
         $v_gr_scan = $request->input('v_gr_scan');
@@ -100,21 +110,24 @@ class M_battController extends Controller
 
 
         if (!empty($scan)) {
-            return view('scan',
-            [
-                "title" => "Scan",
-                "cell_sern_scan" => $cell_sern_scan,
-                "v_gr_scan" => $v_gr_scan,
-                "ir_gr_scan" => $ir_gr_scan,
-                "scan" => $scan
-            ]);
-        }else{
+            return view(
+                'scan',
+                [
+                    "title" => "Scan",
+                    "cell_sern_scan" => $cell_sern_scan,
+                    "v_gr_scan" => $v_gr_scan,
+                    "ir_gr_scan" => $ir_gr_scan,
+                    "scan" => $scan
+                ]
+            );
+        } else {
 
-            return view('/empty_qrcode',["title" => "EmptyQRCode"]);
+            return view('/empty_qrcode', ["title" => "EmptyQRCode"]);
         }
     }
 
-    public function update(Request $request,$cell_sern_scan){
+    public function update(Request $request, $cell_sern_scan)
+    {
         $batt_data = M_batt::where('cell_sern', $cell_sern_scan)->first();
         $batt_data->v_gr = $request->input('v_gr_scan');
         $batt_data->ir_gr = $request->input('ir_gr_scan');
@@ -122,44 +135,50 @@ class M_battController extends Controller
         $data_input_ir_gr = $request->input('ir_gr_scan');
 
         $batt_data->update();
-        return redirect('scan/'.$cell_sern_scan.'/'.$data_input_v_gr.'/'.$data_input_ir_gr)->with('success', 'Data Updated Succesfully');
+        return redirect('scan/' . $cell_sern_scan . '/' . $data_input_v_gr . '/' . $data_input_ir_gr)->with('success', 'Data Updated Succesfully');
         // echo $cell_sern_scan;
     }
 
-    public function searchBinPage(){
-        return view('searchBinPage',
+    public function searchBinPage()
+    {
+        return view(
+            'searchBinPage',
             [
                 "title" => "Find BINQR"
 
 
-            ]);
+            ]
+        );
 
     }
 
-    public function searchBinData(Request $request, $cell_sern_scan){
+    public function searchBinData(Request $request, $cell_sern_scan)
+    {
 
         $bin_data = M_batt::where('cell_sern', $cell_sern_scan)->first();
         return view('searchBinData')->with([
-            'data'=>$bin_data
+            'data' => $bin_data
         ]);
 
     }
 
-    public function m_battexport(){
+    public function m_battexport()
+    {
         $timezone = time() + (60 * 60 * 7);
         $date_now = gmdate('d-m-Y H:i:s', $timezone);
-        return Excel::download(new mbattsExport, 'm_batss_'.$date_now.'.xlsx');
+        return Excel::download(new mbattsExport, 'm_batss_' . $date_now . '.xlsx');
 
     }
 
-    public function voltageUpdate(){
+    public function voltageUpdate()
+    {
         // $voltageUpdate = M_batt::orderBy('updated_at', 'DESC')->first();
-        $voltageUpdate =  DB::table('m_batts')
-            ->where('d_test', '!=', 'null' )
+        $voltageUpdate = DB::table('m_batts')
+            ->where('d_test', '!=', 'null')
             ->orderBy('d_test', 'DESC')
             ->first();
         // dd($voltageUpdate);
-        return view('voltageUpdate',["title" => "V&IR Update", "voltage" => $voltageUpdate]);
+        return view('voltageUpdate', ["title" => "V&IR Update", "voltage" => $voltageUpdate]);
     }
 
     //import now
@@ -174,23 +193,25 @@ class M_battController extends Controller
 
     // }
 
-    public function m_battimportexcel(Request $request){
+    public function m_battimportexcel(Request $request)
+    {
         $po_name = $request->input('po_name');
         $file = $request->file('file');
-        $bin_filter = M_bin::where('po', $po_name)->orderBy('bin', 'ASC')->get(['bin','bin_param']);
-        
+        $bin_filter = M_bin::where('po', $po_name)->orderBy('bin', 'ASC')->get(['bin', 'bin_param']);
+
         // echo $bin_filter;
         $mbattsImport = new mbattsImport($request->po_name, $request->batch, $bin_filter);
         $namaFile = $file->getClientOriginalName();
         $file->move('DataExcel', $namaFile);
 
-        Excel::import($mbattsImport, public_path('/DataExcel/'.$namaFile));
+        Excel::import($mbattsImport, public_path('/DataExcel/' . $namaFile));
         return redirect('/batt_show');
 
     }
 
 
-    public function getBattData(Request $request, $batt_qr_code){
+    public function getBattData(Request $request, $batt_qr_code)
+    {
 
         $frame_batt = M_batt::where('cell_sern', $batt_qr_code)->first();
         // return view('frame_batt')->with([
@@ -201,7 +222,8 @@ class M_battController extends Controller
 
     }
 
-    public function getFrameData(Request $request, $frameValue){
+    public function getFrameData(Request $request, $frameValue)
+    {
 
         $frame_data = M_batt::where('frame_sn', $frameValue)->first();
         // return view('frame_batt')->with([
@@ -213,7 +235,8 @@ class M_battController extends Controller
 
     }
 
-    public function saveFrameData(Request $request, $counter){
+    public function saveFrameData(Request $request, $counter)
+    {
 
         $cell_sern = $request->cell_sern;
         $frame_sn = $request->frame_sn;
@@ -221,9 +244,9 @@ class M_battController extends Controller
         $cell = $request->cell;
         $v_status = $request->v_status;
         $ir_status = $request->ir_status;
-        $counter = (int)$counter;
+        $counter = (int) $counter;
 
-        for ($i = 0; $i < $counter ; $i++){
+        for ($i = 0; $i < $counter; $i++) {
 
             $data = M_batt::where('cell_sern', $cell_sern[$i])->first();
             $data->cell_sern = $cell_sern[$i];
@@ -236,33 +259,44 @@ class M_battController extends Controller
             $data->update();
 
             // return response()->json('success', 200);
-            if($i == $counter-1){
-               return response()->json('success', 200);
+            if ($i == $counter - 1) {
+                return response()->json('success', 200);
             }
         }
 
     }
 
-    public function getBattByPo(Request $request){
-        $po = $request->po_value;   
+    public function getBattByPo(Request $request)
+    {
+        $po = $request->po_value;
         $total_batt = M_batt::where('po', $po)->count();
         $belum_frame = M_batt::where([
             ['po', '=', $po],
             ['frame_sn', '=', ''],
-            ])->count();
+        ])->count();
         $sudah_frame = M_batt::where([
             ['po', '=', $po],
             ['frame_sn', '<>', ''],
-            ])->count();
+        ])->count();
         $ir_max = M_batt::where('po', $po)->max('ir_gr');
         $ir_min = M_batt::where('po', $po)->min('ir_gr');
         $v_max = M_batt::where('po', $po)->max('v_gr');
         $v_min = M_batt::where('po', $po)->min('v_gr');
+        $frame_list = M_batt::select('frame_sn', 'bin', DB::raw('COUNT(frame_sn) as jumlah_baterai'))
+            ->where('po', $po)
+            ->where('frame_sn', '<>', '')
+            ->groupBy('frame_sn', 'bin')
+            ->orderBy('frame_sn', 'asc')
+            ->get();
+
         //  dd($data_batt);
         //  echo $data_batt ;
-        return response()->json(['total_batt' => $total_batt, 'belum_frame' => $belum_frame, 'sudah_frame' => $sudah_frame, 'ir_max' => $ir_max, 'ir_min' => $ir_min, 'v_max' => $v_max, 'v_min' => $v_min]);
-        
+        return response()->json(['total_batt' => $total_batt, 'belum_frame' => $belum_frame, 'sudah_frame' => $sudah_frame, 'ir_max' => $ir_max, 'ir_min' => $ir_min, 'v_max' => $v_max, 'v_min' => $v_min, 'frame_list' => $frame_list]);
+
 
     }
+
+   
+
 
 }
