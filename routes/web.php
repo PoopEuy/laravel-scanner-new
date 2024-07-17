@@ -168,6 +168,11 @@ Route::get('/getFramesBySN/{frame_sn}', [T_FrameController::class, 'getFramesByS
 Route::post('/createFrame', [T_FrameController::class, 'createFrame']);
 Route::post('/createBulkFrame', [T_FrameController::class, 'createBulkFrame']);
 
+// Route to retrieve CSRF token
+// Route::get('/csrf-token', function () {
+//     return response()->json(['csrf_token' => csrf_token()]);
+// });
+
 
 
 
