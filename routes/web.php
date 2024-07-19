@@ -78,15 +78,25 @@ Route::get('/input_test', function () {
     return view('input_test',["title" => "InputTest"]);
 });
 
+
+Route::get('/getBattData/{batt_qr_code}', [M_battController::class, 'getBattData']);
+Route::get('/getFrameData/{frameValue}', [M_battController::class, 'getFrameData']);
+Route::post('/getBattByPo', [M_battController::class, 'getBattByPo']);
+
+//page route
 Route::get('/frameScan', function () {
     return view('frameScan' ,
     [
         "title" => "FRAME TALIS 30"
     ]);
 });
-Route::get('/getBattData/{batt_qr_code}', [M_battController::class, 'getBattData']);
-Route::get('/getFrameData/{frameValue}', [M_battController::class, 'getFrameData']);
-Route::post('/getBattByPo', [M_battController::class, 'getBattByPo']);
+
+Route::get('/frameScan1V2', function () {
+    return view('frameScan1V2' ,
+    [
+        "title" => "FRAME TALIS 30"
+    ]);
+});
 
 Route::get('/frameScan2', function () {
     return view('frameScan2' ,
@@ -124,6 +134,14 @@ Route::get('/frameScan5', function () {
     ]);
 });
 
+Route::get('/frameScan5V2', function () {
+    return view('frameScan5V2' ,
+    [
+        "title" => "FRAME TALIS 7"
+    ]);
+});
+
+
 Route::get('/frameScan6', function () {
     return view('frameScan6' ,
     [
@@ -138,6 +156,8 @@ Route::get('/frameScan_bp', function () {
         "title" => "Frame Scan_bp"
     ]);
 });
+
+//end page route
 
 Route::get('/importDataPage', [M_typeController::class, 'importDataPage']);
 Route::get('/get_po_type', [M_typeController::class, 'get_po_type']);
