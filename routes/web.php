@@ -193,6 +193,9 @@ Route::post('/createBulkFrame', [T_FrameController::class, 'createBulkFrame']);
 //     return response()->json(['csrf_token' => csrf_token()]);
 // });
 
+//uploadimage
+Route::post('/uploadImage/{filename}', [ImageController::class, 'uploadImage'])->name('upload.image');
+
 
 
 
