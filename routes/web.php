@@ -9,6 +9,7 @@ use App\Http\Controllers\M_battController;
 use App\Http\Controllers\M_typeController;
 use App\Http\Controllers\M_binController;
 use App\Http\Controllers\T_FrameController;
+use App\Http\Controllers\ImageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
