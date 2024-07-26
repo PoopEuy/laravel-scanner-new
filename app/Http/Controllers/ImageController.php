@@ -20,7 +20,7 @@ class ImageController extends Controller
         $imageName = $filename . '.' . $image->getClientOriginalExtension();  
         
         // Pindahkan file gambar ke direktori 'public/img' dengan nama baru
-        $image->move(public_path('img'), $imageName);
+        $image->move(public_path('img/frame'), $imageName);
 
         // Opsional, simpan $imageName ke database atau lakukan operasi lain
 
