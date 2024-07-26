@@ -8,20 +8,25 @@ class ImageController extends Controller
 {
     public function uploadImage(Request $request, $filename)
     {
-        // Validate the uploaded file
+        // Validasi file yang diunggah
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // max 2MB
         ]);
 
-        // Get the uploaded file
+        // Ambil file yang diunggah
         $image = $request->file('image');
 
-        // Store the uploaded file with the specified filename
+        // Buat nama file dengan ekstensi asli
         $imageName = $filename . '.' . $image->getClientOriginalExtension();  
-        $image->move(public_path('images'), $imageName);
+        
+        // Pindahkan file gambar ke direktori 'public/img' dengan nama baru
+        $image->move(public_path('img'), $imageName);
 
-        // Optionally, save $imageName to the database or perform other operations
+        // Opsional, simpan $imageName ke database atau lakukan operasi lain
 
         return response()->json(['success' => true, 'message' => 'Image uploaded successfully'], 200);
     }
 }
+
+
+
