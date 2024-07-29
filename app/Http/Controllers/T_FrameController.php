@@ -66,6 +66,7 @@ class T_FrameController extends Controller
         $frame = new T_frame();
         $frame->frame_sn = $request->frame_sn;
         $frame->frame_code = $request->frame_code;
+        $frame->image = $request->frame_sn . '.jpg';
         $frame->ts = now(); // Set created_at timestamp
 
         // Save the frame
