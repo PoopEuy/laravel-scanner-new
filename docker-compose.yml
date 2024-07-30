@@ -1,53 +1,53 @@
-version : '3.7'
+version: "3.7"
 
 networks:
-  battery:
+    battery:
 
 volumes:
-  postgres_data:
+    postgres_data:
 
 services:
-  nginx:
-    image: nginx
-    container_name: laravel_scanner
-    ports:
-      - "8070:80"
-    links:
-      - php
-    volumes:
-      - ./:/var/www
-      - ./laravelVHost.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - php
-      - postgres
-    networks:
-      - battery
+    nginx:
+        image: nginx
+        container_name: laravel_scanner
+        ports:
+            - "8070:80"
+        links:
+            - php
+        volumes:
+            - ./:/var/www
+            - ./laravelVHost.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            - php
 
-  php:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: laravel_php
-    volumes:
-      - ./:/var/www
-    ports:
-      - "9000:9000"
-    networks:
-      - battery
+        networks:
+            - battery
 
-  postgres:
-    image: postgres
-    container_name: postgres_scanner
-    restart: unless-stopped
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./db/sql:/docker-entrypoint-initdb.dus
-    environment:
-      POSTGRES_USER: sundaya
-      POSTGRES-PASSWORD: sundaya2022
-      POSTGRES_DB: db_baterai
-      POSTGRES_HOST_AUTH_METHOD: "trust"
-    networks:
-      - battery
+    php:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: laravel_php
+        volumes:
+            - ./:/var/www
+        ports:
+            - "9000:9000"
+        networks:
+            - battery
+
+    # postgres:
+    #   image: postgres
+    #   container_name: postgres_scanner
+    #   restart: unless-stopped
+    #   ports:
+    #     - "5432:5432"
+    #   volumes:
+    #     - postgres_data:/var/lib/postgresql/data
+    #     - ./db/sql:/docker-entrypoint-initdb.dus
+    #   environment:
+    #     POSTGRES_USER: sundaya
+    #     POSTGRES-PASSWORD: sundaya2022
+    #     POSTGRES_DB: db_baterai
+    #     POSTGRES_HOST_AUTH_METHOD: "trust"
+    #   networks:
+    #     - battery
