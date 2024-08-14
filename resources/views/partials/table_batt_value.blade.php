@@ -15,6 +15,7 @@
             <th>Delta mV</th>
             <th>V_Status</th>
             <th>Frame</th>
+            <th>PO Code</th>
             <th>D Test</th>
         </tr>
     </thead>
@@ -63,6 +64,9 @@
                 </td>
                 <td>
                     {{ $item->frame_sn }}
+                </td>
+                <td>
+                    {{ $item->po }}
                 </td>
                 <td>
                     {{ $item->d_test }}
