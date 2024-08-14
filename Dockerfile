@@ -13,16 +13,16 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY php/php.ini /usr/local/etc/php/php.ini
 COPY php/docker.conf /usr/local/etc/php-fpm.d/docker.conf
 
-COPY --chown=www-data:www-data . /var/www  
+# COPY --chown=www-data:www-data . /var/www  
 
-RUN chmod -R 775 storage
-RUN chmod -R 775 bootstrap/cache
-RUN chmod -R 775 public/DataExcel
-RUN sudo chmod o+w ./storage/ -R
-RUN sudo chmod o+w ./public/DataExcel/ -R
-RUN sudo chown -R $USER:www-data storage
-RUN sudo chown -R $USER:www-data bootstrap/cache
-RUN sudo chown -R $USER:www-data public/DataExcel
+# RUN chmod -R 775 storage
+# RUN chmod -R 775 bootstrap/cache
+# RUN chmod -R 775 public/DataExcel
+# RUN sudo chmod o+w ./storage/ -R
+# RUN sudo chmod o+w ./public/DataExcel/ -R
+# RUN sudo chown -R $USER:www-data storage
+# RUN sudo chown -R $USER:www-data bootstrap/cache
+# RUN sudo chown -R $USER:www-data public/DataExcel
 
 
 # Ensure directories exist before changing permissions
