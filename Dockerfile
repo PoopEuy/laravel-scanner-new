@@ -14,7 +14,7 @@ COPY php/php.ini /usr/local/etc/php/php.ini
 COPY php/docker.conf /usr/local/etc/php-fpm.d/docker.conf
 
 COPY --chown=www-data:www-data . /var/www  
-<<<<<<< HEAD
+
 RUN chmod -R 775 storage
 RUN chmod -R 775 bootstrap/cache
 RUN chmod -R 775 public/DataExcel
@@ -23,8 +23,7 @@ RUN sudo chmod o+w ./public/DataExcel/ -R
 RUN sudo chown -R $USER:www-data storage
 RUN sudo chown -R $USER:www-data bootstrap/cache
 RUN sudo chown -R $USER:www-data public/DataExcel
-=======
->>>>>>> 08294926754ca73c504b733480afefbe297f9024
+
 
 # Ensure directories exist before changing permissions
 RUN mkdir -p /var/www/storage /var/www/bootstrap/cache /var/www/public/DataExcel
