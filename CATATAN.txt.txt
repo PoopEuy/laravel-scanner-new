@@ -9,3 +9,16 @@ solusi :
 
 - cari ;extension=php_gd2.dll apda php.ini ubah menjadi extension=php_gd2.dll
 - install  composer require doctrine/dbal:3.6.1
+
+
+membuat migttion baru : 
+php artisan make:migration create_flights_table
+
+melakukan migration : 
+php artisan migrate
+
+memeriksa status migration : 
+php artisan migrate:status
+
+mengembalikan migration / undo migration : 
+php artisan migrate:rollback
